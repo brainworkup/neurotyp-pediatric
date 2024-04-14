@@ -1,0 +1,203 @@
+## Verbal/Language {#sec-verbal}
+
+{{< include _02-03_verbal_text.qmd >}}
+
+```{r}
+#| label: setup-verbal
+#| include: false
+# domain
+domains <- c("Verbal/Language")
+# phenotype
+pheno <- "verbal"
+```
+
+```{r}
+#| label: export-verbal
+#| include: false
+verbal <- readr::read_csv("neurocog.csv") |>
+  dplyr::filter(domain == domains) |>
+  dplyr::filter(!is.na(z_mean_domain)) |>
+  dplyr::select(
+    scale, score, z, percentile, range, test_name,
+    domain, subdomain, narrow, pass, verbal, timed, description, result,
+    z_mean_domain, z_sd_domain, z_mean_subdomain,
+    z_sd_subdomain, z_mean_narrow, z_sd_narrow, z_mean_pass, z_sd_pass,
+    z_mean_verbal, z_sd_verbal, z_mean_timed, z_sd_timed
+  )
+readr::write_csv(verbal, paste0(pheno, ".csv"))
+```
+
+```{r}
+#| label: data-verbal
+#| include: false
+
+# read and filter data
+data <- bwu::read_data(pheno = pheno)
+scales <- c(
+  "Academic Language Readiness Index",
+  "Auditory Comprehension Colors",
+  "Auditory Comprehension Colors/Shapes/Numbers",
+  "Auditory Comprehension Shapes",
+  "Auditory Comprehension",
+  "Basic Concepts",
+  "Bill Payment",
+  "Body Part Identification",
+  "Body Part Naming",
+  "Category Fluency",
+  "Comprehension of Instructions",
+  "Comprehension",
+  "Core Language Score",
+  "D-KEFS Color Naming",
+  "D-KEFS Word Reading",
+  "Descriptive Pragmatics Profile",
+  "Early Literacy Index",
+  "Expressive Language Index",
+  "Expressive Vocabulary",
+  "Following Directions",
+  "Information",
+  "Language Content Index",
+  "Language Domain",
+  "Language Index",
+  "Language Structure Index",
+  "Letter Fluency",
+  "NAB Language Index",
+  "Naming Phonemic Cuing",
+  "Naming Semantic Cuing",
+  "Naming vs Identification",
+  "Naming",
+  "Oral Production",
+  "Oromotor Sequences",
+  "Phonological Awareness",
+  "Picture Naming",
+  "Preliteracy Rating Scale",
+  "Reading Comprehension",
+  "Recalling Sentences",
+  "Receptive Language Index",
+  "Receptive Vocabulary",
+  "Semantic Fluency",
+  "Sentence Comprehension",
+  "Similarities",
+  "Speeded Naming Correct",
+  "Speeded Naming Errors",
+  "Speeded Naming Time",
+  "Speeded Naming",
+  "Vocabulary",
+  "Word Classes",
+  "Word Generation Initial Letter",
+  "Word Generation Semantic",
+  "Semantic vs. Initial Letter",
+  "Word Generation",
+  "Word Structure",
+  "Writing"
+)
+data_verbal <- bwu::filter_data(data, domain = domains, scale = scales)
+```
+
+```{r}
+#| label: text-verbal
+#| cache: true
+#| include: false
+
+bwu::cat_neuropsych_results(data = data_verbal, file = "_02-03_verbal_text.qmd")
+```
+
+```{r}
+#| label: qtbl-verbal
+#| dev: tikz
+#| fig-process: pdf2png
+#| include: false
+options(tikzDefaultEngine = "xetex")
+
+# footnotes
+fn_scaled_score <- gt::md("Scaled Score: Mean = 10 [50th‰], SD ± 3 [16th‰, 84th‰]")
+fn_standard_score <- gt::md("Index Score: Mean = 100 [50th‰], SD ± 15 [16th‰, 84th‰]")
+fn_t_score <- gt::md("_T_-Score: Mean = 50 [50th‰], SD ± 10 [16th‰, 84th‰]")
+fn_z_score <- "_z_-Score: Mean = 0 [50th‰], SD ± 1 [16th‰, 84th‰]"
+
+pheno <- "verbal"
+table_name <- "table_verbal"
+grp_verbal <- list(
+  scaled_score = c("WAIS-IV", "WISC-5", "NEPSY-2", "D-KEFS"),
+  standard_score = c("NAB"),
+  t_score = c("NAB", "NIH EXAMINER", "WASI-2")
+)
+vertical_padding <- 0
+multiline <- TRUE
+
+bwu::tbl_gt(
+  data = data_verbal,
+  pheno = pheno,
+  table_name = table_name,
+  fn_scaled_score = fn_scaled_score,
+  fn_t_score = fn_t_score,
+  fn_standard_score = fn_standard_score,
+  grp_scaled_score = grp_verbal[["scaled_score"]],
+  grp_t_score = grp_verbal[["t_score"]],
+  # grp_standard_score = grp_verbal[["standard_score"]],
+  dynamic_grp = grp_verbal,
+  vertical_padding = vertical_padding,
+  multiline = multiline
+)
+```
+
+```{r}
+#| label: fig-verbal
+#| include: false
+#| fig-cap: "Verbal and language functioning refers to the ability to access and apply acquired word knowledge, to verbalize meaningful concepts, to understand complex multistep instructions, to think about verbal information, and to express oneself using words."
+
+# args
+data_verbal <- dplyr::filter(data_verbal, subdomain != "Language")
+x <- data_verbal$z_mean_subdomain
+y <- data_verbal$subdomain
+colors <- NULL
+# return_plot <- TRUE
+return_plot <- Sys.getenv("RETURN_PLOT")
+filename <- "fig_verbal.svg"
+
+# Make dotplot
+bwu::dotplot(
+  data = data_verbal,
+  x = x,
+  y = y,
+  colors = colors,
+  return_plot = return_plot,
+  filename = filename
+)
+```
+
+```{=typst}
+#let domain(title: none, file_qtbl, file_fig) = {
+  let font = (font: "Merriweather", size: 0.7em)
+  set text(..font)
+  pad(top: 0.5em)[]
+    grid(
+      columns: (50%, 50%),
+      gutter: 8pt,
+        figure([#image(file_qtbl)],
+          caption: figure.caption(position: top, [#title]),
+          kind: "qtbl",
+          supplement: [Table],
+          ),
+        figure([#image(file_fig)],
+          caption: figure.caption(position: bottom, [
+            Verbal and language functioning refers to the ability to access and apply acquired word knowledge, to verbalize meaningful concepts, to understand complex multistep instructions, to think about verbal information, and to express oneself using words.
+            ]),
+          placement: none,
+          kind: "image",
+          supplement: [Figure],
+          gap: 0.5em,
+        ),
+      )
+  }
+```
+
+```{=typst}
+#let title = "Verbal/Language"
+#let file_qtbl = "table_verbal.png"
+#let file_fig = "fig_verbal.svg"
+#domain(
+  title: [#title Test Scores],
+  file_qtbl,
+  file_fig
+  )
+```

@@ -1,0 +1,348 @@
+## Attention/Executive {#sec-executive}
+
+{{< include _02-05_executive_text.qmd >}}
+
+```{r}
+#| label: setup-executive
+#| include: false
+
+# domain
+domains <- c("Attention/Executive")
+# phenotype
+pheno <- "executive"
+```
+
+```{r}
+#| label: export-executive
+#| include: false
+
+# Load necessary libraries
+library(readr)
+library(dplyr)
+
+# Read the CSV file into a data frame
+data <- readr::read_csv("neurocog.csv")
+
+# Filter the data frame based on certain conditions
+# Keep only the rows where 'domain' equals 'domains' and 'z_mean_domain' is not NA
+filtered_data <- data |>
+  dplyr::filter(domain == domains) |>
+  dplyr::filter(!is.na(z_mean_domain))
+
+# Select specific columns from the data frame
+executive <- filtered_data |>
+  dplyr::select(
+    scale, score, z, percentile, range, test_name,
+    domain, subdomain, narrow, pass, verbal, timed, description, result,
+    z_mean_domain, z_sd_domain, z_mean_subdomain,
+    z_sd_subdomain, z_mean_narrow, z_sd_narrow, z_mean_pass, z_sd_pass,
+    z_mean_verbal, z_sd_verbal, z_mean_timed, z_sd_timed
+  )
+
+# Write the 'executive' data frame to a CSV file
+# The file name is derived from the 'pheno' variable
+readr::write_csv(executive, paste0(pheno, ".csv"))
+```
+
+```{r}
+#| label: data-executive
+#| include: false
+
+# read and filter data
+data <- bwu::read_data(pheno = pheno)
+scales <- c(
+  "Animal Coding",
+  "Arithmetic",
+  "Attention Domain",
+  "Attention Index",
+  "Auditory Working Memory (AWMI)",
+  "Bug Search",
+  "Cancellation Random",
+  "Cancellation Structured",
+  "Cancellation",
+  "Categories",
+  "Category Fluency",
+  "Clock Drawing",
+  "Coding",
+  "Comprehension",
+  "CVLT-3 Total Intrusions",
+  "CVLT-3 Total Repetitions",
+  "D-KEFS Color Naming",
+  "D-KEFS Inhibition Total Errors",
+  "D-KEFS Inhibition",
+  "D-KEFS Switching Total Errors",
+  "D-KEFS Switching",
+  "D-KEFS Word Reading",
+  "Digit Span Backward",
+  "Digit Span Forward",
+  "Digit Span Sequencing",
+  "Digit Span",
+  "Digits Backward Longest Span",
+  "Digits Backward",
+  "Digits Forward Longest Span",
+  "Digits Forward",
+  "Dots",
+  "Driving Scenes",
+  "Executive Functions Domain",
+  "Judgment",
+  "Letter Fluency",
+  "Letter-Number Sequencing",
+  "Longest Digit Span Backward",
+  "Longest Digit Span Forward",
+  "Longest Digit Span Sequence",
+  "Longest Letter-Number Sequence",
+  "Matrix Reasoning",
+  "Mazes",
+  "NAB Attention Index",
+  "NAB Executive Functions Index",
+  "Numbers & Letters Part A Efficiency",
+  "Numbers & Letters Part A Errors",
+  "Numbers & Letters Part A Speed",
+  "Numbers & Letters Part B Efficiency",
+  "Numbers & Letters Part C Efficiency",
+  "Numbers & Letters Part D Disruption",
+  "Numbers & Letters Part D Efficiency",
+  "Orientation",
+  "Picture Memory",
+  "Picture Span",
+  "Processing Speed (PSI)",
+  "ROCFT Copy",
+  "Similarities",
+  "Spatial Addition",
+  "Spatial Span",
+  "Symbol Search",
+  "Symbol Span",
+  "TMT, Part A",
+  "TMT, Part B",
+  "Total Deviation Score",
+  "Unstructured Task",
+  "Word Generation",
+  "Word Generation Perseverations",
+  "Working Memory (WMI)",
+  "Zoo Locations"
+  # "List Memory Repetitions",
+  # "List Memory Intrusions"
+)
+data_executive <- bwu::filter_data(data, domain = domains, scale = scales)
+```
+
+```{r}
+#| label: text-executive
+#| cache: true
+#| include: false
+
+bwu::cat_neuropsych_results(data = data_executive, file = "_02-05_executive_text.qmd")
+```
+
+```{r}
+#| label: qtbl-executive
+#| dev: tikz
+#| fig-process: pdf2png
+#| include: false
+options(tikzDefaultEngine = "xetex")
+
+# more filtering for exe tables
+data_executive <-
+  data_executive |>
+  dplyr::filter(test_name != "CVLT-3 Brief") |>
+  dplyr::filter(scale != "Orientation") |>
+  dplyr::filter(scale %in% c(
+    # "D-KEFS Inhibition Total Errors",
+    "D-KEFS Inhibition",
+    # "D-KEFS Switching Total Errors",
+    "D-KEFS Switching",
+    "NAB Attention Index",
+    "Digits Forward",
+    # "Digits Forward Longest Span",
+    "Digits Backward",
+    # "Digits Backward Longest Span",
+    "Dots",
+    "Numbers & Letters Part A Efficiency",
+    "Numbers & Letters Part B Efficiency",
+    "Numbers & Letters Part C Efficiency",
+    "Numbers & Letters Part D Efficiency",
+    "Driving Scenes",
+    "NAB Executive Functions Index",
+    "Mazes",
+    "Categories",
+    "Word Generation",
+    # "Word Generation Perseverations",
+    "Judgment",
+    "Working Memory (WMI)",
+    "Arithmetic",
+    "Digit Span",
+    "Longest Digit Span Forward",
+    "Longest Digit Span Backward",
+    "Longest Digit Span Sequence",
+    "Letter-Number Sequencing",
+    "Symbol Span",
+    "Spatial Span",
+    "Picture Span",
+    "Processing Speed (PSI)",
+    "Coding",
+    "Cancellation",
+    "Symbol Search",
+    "TMT, Part A",
+    "TMT, Part B",
+    "Unstructured Task",
+    "Attention Index"
+  ))
+
+# footnotes
+fn_scaled_score <- gt::md("Scaled Score: Mean = 10 [50th‰], SD ± 3 [16th‰, 84th‰]")
+fn_standard_score <- gt::md("Index Score: Mean = 100 [50th‰], SD ± 15 [16th‰, 84th‰]")
+fn_t_score <- gt::md("_T_-Score: Mean = 50 [50th‰], SD ± 10 [16th‰, 84th‰]")
+fn_z_score <- gt::md("_z_-Score: Mean = 0 [50th‰], SD ± 1 [16th‰, 84th‰]")
+
+pheno <- "executive"
+table_name <- "table_executive"
+grp_executive <- list(
+  scaled_score = c("WAIS-IV", "D-KEFS", "NEPSY-2", "WISC-5"),
+  standard_score = c("NAB", "WISC-5", "WAIS-IV"),
+  t_score = c("NAB", "NIH EXAMINER", "Trail Making Test")
+)
+vertical_padding <- 0
+multiline <- TRUE
+
+bwu::tbl_gt(
+  data = data_executive,
+  pheno = pheno,
+  table_name = table_name,
+  vertical_padding = vertical_padding,
+  fn_scaled_score = fn_scaled_score,
+  fn_standard_score = fn_standard_score,
+  fn_t_score = fn_t_score,
+  grp_scaled_score = grp_executive[["scaled_score"]],
+  # grp_standard_score = grp_executive[["standard_score"]],
+  grp_t_score = grp_executive[["t_score"]],
+  dynamic_grp = grp_executive,
+  multiline = multiline
+)
+```
+
+```{r}
+#| label: fig-executive
+#| include: false
+#| fig-cap: "Attention and executive functions are essential for successful cognitive functioning, enabling us to perform everyday tasks, handle academic challenges, solve problems, manage our emotions, and interact effectively with others and our environment."
+
+# args
+x <- data_executive$z_mean_subdomain
+y <- data_executive$subdomain
+colors <- NULL
+# return_plot <- TRUE
+return_plot <- Sys.getenv("RETURN_PLOT")
+filename <- "fig_executive.svg"
+
+bwu::dotplot(
+  data = data_executive,
+  x = x,
+  y = y,
+  colors = colors,
+  return_plot = return_plot,
+  filename = filename
+)
+
+```
+
+
+```{r}
+#| label: fig-executive2
+#| include: false
+#| fig-cap: "Attention and executive functions are essential for successful cognitive functioning, enabling us to perform everyday tasks, handle academic challenges, solve problems, manage our emotions, and interact effectively with others and our environment."
+
+# args2
+x2 <- data_executive$z_mean_narrow
+y2 <- data_executive$narrow
+colors <- NULL
+# return_plot <- TRUE
+return_plot <- Sys.getenv("RETURN_PLOT")
+filename <- "fig_executive2.svg"
+
+bwu::dotplot(
+  data = data_executive,
+  x = x2,
+  y = y2,
+  colors = colors,
+  return_plot = return_plot,
+  filename = filename
+)
+```
+
+```{=typst}
+#let domain(title: none, file_qtbl, file_fig) = {
+  let font = (font: "Merriweather", size: 0.7em)
+  set text(..font)
+  pad(top: 0.5em)[]
+    grid(
+      columns: (50%, 50%),
+      gutter: 8pt,
+        figure([#image(file_qtbl)],
+          caption: figure.caption(position: top, [#title]),
+          kind: "qtbl",
+          supplement: [Table],
+          ),
+        figure([#image(file_fig, width: auto)],
+          caption: figure.caption(position: bottom, [
+            Attention and executive functions are essential for successful
+            cognitive functioning, enabling us to perform everyday tasks, handle
+            academic challenges, solve problems, manage our emotions, and
+            interact effectively with others and our environment.
+            ]),
+          placement: none,
+          kind: "image",
+          supplement: [Figure],
+          gap: 0.5em,
+        ),
+      )
+  }
+```
+
+```{=typst}
+#let title = "Attention/Executive"
+#let file_qtbl = "table_executive.png"
+#let file_fig = "fig_executive.svg"
+#domain(
+  title: [#title Test Scores],
+  file_qtbl,
+  file_fig
+  )
+```
+
+<!-- ```{=typst}
+#let domain(title: none, file_qtbl, file_fig) = {
+  let font = (font: "Merriweather", size: 0.7em)
+  set text(..font)
+    grid(
+      columns: (50%, 50%),
+      gutter: 8pt,
+        figure([#image(file_qtbl)],
+          caption: figure.caption(position: top, [#title]),
+          kind: "qtbl",
+          supplement: [Table],
+          ),
+        figure([#image(file_fig, width: auto)],
+          caption: figure.caption(position: bottom, [
+            Attention and executive functions are essential for successful
+            cognitive functioning, enabling us to perform everyday tasks, handle
+            academic challenges, solve problems, manage our emotions, and
+            interact effectively with others and our environment.
+            ]),
+          placement: none,
+          kind: "image",
+          supplement: [Figure],
+          gap: 0.5em,
+        ),
+      )
+  }
+``` -->
+
+<!-- ```{=typst}
+#let title = "Attention/Executive"
+#let file_qtbl = "table_executive.png"
+#let file_fig = "fig_executive2.svg"
+#domain(
+  title: [#title Test Scores],
+  file_qtbl,
+  file_fig
+  )
+``` -->

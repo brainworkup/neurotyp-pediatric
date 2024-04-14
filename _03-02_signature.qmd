@@ -1,0 +1,32 @@
+Thank you for considering this report in your evaluation of Biggie. I am available to provide further information or clarification as needed.
+
+Respectfully submitted,
+
+It was a pleasure to work with Biggie.
+Please contact me with any questions or concerns regarding this patient.
+
+Sincerely,
+
+```{r}
+#| label: signature
+#| fig-align: left
+#| out-width: 10em
+#| echo: false
+#| eval: true
+knitr::include_graphics("jwt_phd.png")
+```
+
+```{=typst}
+#v(2em, weak: true)
+#show block: set par(leading: 0.65em)
+#block[
+*Joey W. Trampush, Ph.D.* \
+Chief Neuropsychologist \
+BrainWorkup Neuropsychology, LLC \
+Assistant Professor \
+Department of Psychiatry and the Behavioral Sciences \
+Keck School of Medicine of USC \
+CA License No. PSY29212
+]
+```
+

@@ -1,0 +1,236 @@
+## Academic Skills {#sec-academics}
+
+{{< include _02-02_academics_text.qmd >}}
+
+```{r}
+#| label: setup-academics
+#| include: false
+# domain
+domains <- c("Academic Skills")
+# phenotype
+pheno <- "academics"
+```
+
+```{r}
+#| label: export-academics
+#| include: false
+academics <- readr::read_csv("neurocog.csv") |>
+  dplyr::filter(domain == domains) |>
+  dplyr::filter(!is.na(z_mean_domain)) |>
+  dplyr::select(
+    scale, score, z, percentile, range, test_name,
+    domain, subdomain, narrow, pass, verbal, timed, description, result,
+    z_mean_domain, z_sd_domain, z_mean_subdomain,
+    z_sd_subdomain, z_mean_narrow, z_sd_narrow, z_mean_pass, z_sd_pass,
+    z_mean_verbal, z_sd_verbal, z_mean_timed, z_sd_timed
+  )
+readr::write_csv(academics, paste0(pheno, ".csv"))
+```
+
+```{r}
+#| label: data-academics
+#| include: false
+
+data <- bwu::read_data(pheno = "academics")
+scales <- c(
+  "Academic Fluency Composite",
+  "Academic Language Readiness Index",
+  "Academic Skills Battery (ASB) Composite",
+  "Alphabet Writing Fluency",
+  "Associational Fluency",
+  "Basic Reading",
+  "Comprehension Composite",
+  "Decoding Composite",
+  "Decoding Fluency",
+  "Decoding",
+  "Dyslexia Index",
+  "Essay Composition",
+  "Expression Composite",
+  "Expressive Vocabulary",
+  "Letter & Word Recognition",
+  "Letter Naming Facility",
+  "Listening Comprehension",
+  "Math Composite",
+  "Math Computation",
+  "Math Concepts & Applications",
+  "Math Fluency-Addition",
+  "Math Fluency-Multiplication",
+  "Math Fluency-Subtraction",
+  "Math Fluency",
+  "Math Problem Solving",
+  "Mathematics",
+  "Nonsense Word Decoding",
+  "Numerical Operations",
+  "Object Naming Facility",
+  "Oral Discourse Comprehension",
+  "Oral Expression",
+  "Oral Fluency Composite",
+  "Oral Language Composite",
+  "Oral Reading Fluency",
+  "Oral Word Fluency",
+  "Orthographic Choice",
+  "Orthographic Fluency",
+  "Orthographic Processing Composite",
+  "Orthographic Processing Extended",
+  "Orthographic Processing",
+  "Phonemic Proficiency",
+  "Phonological Processing",
+  "Pseudoword Decoding",
+  "Reading Composite",
+  "Reading Comprehension",
+  "Reading Comprehension",
+  "Reading Fluency Composite",
+  "Reading Fluency",
+  "Reading Index",
+  "Reading Understanding Composite",
+  "Reading Vocabulary",
+  "Reading",
+  "Receptive Vocabulary",
+  "Sentence Composition",
+  "Sentence Comprehension",
+  "Sentence Repetition",
+  "Sentence Writing Fluency",
+  "Silent Reading Fluency",
+  "Sound-Symbol Composite",
+  "Spelling",
+  "Total Achievement",
+  "Word Reading",
+  "Word Recognition Fluency",
+  "Writing Fluency",
+  "Written Expression",
+  "Written Language Composite"
+)
+data_academics <- bwu::filter_data(data, domain = domains, scale = scales)
+```
+
+```{r}
+#| label: text-academics
+#| cache: true
+#| include: false
+bwu::cat_neuropsych_results(data = data_academics, file = "_02-02_academics_text.qmd")
+```
+
+```{r}
+#| label: qtbl-academics
+#| dev: tikz
+#| fig-process: pdf2png
+#| include: false
+options(tikzDefaultEngine = "xetex")
+
+# footnotes
+table_name <- "table_academics"
+vertical_padding <- 0
+multiline <- TRUE
+source_note <- gt::md("Standard Score: Mean = 100 [50th‰], SD ± 15 [16th‰, 84th‰]")
+grp_academics <- list(
+  standard_score = c("KTEA-3", "WIAT-4", "WRAT-5")
+)
+
+bwu::tbl_gt(
+  data = data_academics,
+  pheno = pheno,
+  table_name = table_name,
+  source_note = source_note,
+  grp_standard_score = grp_academics[["standard_score"]],
+  dynamic_grp = grp_academics,
+  vertical_padding = vertical_padding,
+  multiline = multiline
+)
+```
+
+```{r}
+#| label: fig-academics
+#| include: false
+#| fig-cap: "_Reading ability_ consists of three interrelated abilities: decoding, comprehension, and fluency. _Writing ability_ can be described in terms of spelling, grammar, expression of ideas, and writing fluency. _Math ability_ can be described in terms of calculation skills, applied problem solving, and math fluency."
+
+# Remove rows where 'subdomain' is NA
+data_academics <- data_academics[!is.na(data_academics$subdomain), ]
+
+# args
+x <- data_academics$z_mean_subdomain
+y <- data_academics$subdomain
+colors <- NULL
+# return_plot <- TRUE
+return_plot <- Sys.getenv("RETURN_PLOT")
+filename <- "fig_academics.svg"
+
+# Make dotplot
+bwu::dotplot(
+  data = data_academics,
+  x = x,
+  y = y,
+  colors = colors,
+  return_plot = return_plot,
+  filename = filename
+)
+
+# Remove rows where 'subdomain' is NA
+data_academics <- data_academics[!is.na(data_academics$narrow), ]
+
+x2 <- data_academics$z_mean_narrow
+y2 <- data_academics$narrow
+filename2 <- "fig_academics2.svg"
+bwu::dotplot(
+  data = data_academics,
+  x = x2,
+  y = y2,
+  colors = colors,
+  return_plot = return_plot,
+  filename = filename2
+)
+
+```
+
+```{=typst}
+#let domain(title: none, file_qtbl, file_fig) = {
+  let font = (font: "Merriweather", size: 0.7em)
+  set text(..font)
+  pad(top: 0.5em)[]
+  grid(
+    columns: (50%, 50%),
+    gutter: 8pt,
+    figure(
+      [#image(file_qtbl)],
+      caption: figure.caption(position: top, [#title]),
+      kind: "qtbl",
+      supplement: [Table],
+    ),
+    figure(
+      [#image(file_fig, width: auto)],
+      caption: figure.caption(
+        position: bottom,
+        [
+          Reading ability encompasses three interconnected skills: _Decoding_,
+          which is the capacity to identify and pronounce isolated written
+          words; _Comprehension_, the aptitude to understand explicit facts in
+          the text as well as infer unstated aspects; and _Fluency_, the
+          proficiency in swiftly and fluently decoding and understanding basic
+          written information.
+        ],
+      ),
+      placement: none,
+      kind: "image",
+      supplement: [Figure],
+      gap: 0.5em,
+    ),
+  )
+}
+```
+
+<!-- ```{=typst}
+#let title = "Academic Achievement"
+#let file_qtbl = "table_academics.png"
+#let file_fig = "fig_academics.svg"
+#domain(title: [#title Test Scores], file_qtbl, file_fig)
+``` -->
+
+```{=typst}
+#let title = "Academic Achievement"
+#let file_qtbl = "table_academics.png"
+#let file_fig = "fig_academics2.svg"
+#domain(
+  title: [#title Test Scores],
+  file_qtbl,
+  file_fig,
+  )
+```

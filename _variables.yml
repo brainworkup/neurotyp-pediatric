@@ -1,0 +1,42 @@
+version: 0.1.0
+
+# variables:
+patient: Biggie
+first_name: Biggie
+last_name: Smalls
+dob: 1991-01-01
+doe1: ""
+doe2: ""
+doe3: ""
+sex: male/female
+sex_cap: Male/Female
+age: ""
+education: ""
+handedness: ""
+referral: ""
+observer: ""
+observer_relation: ""
+mr_mrs: Mr.
+he_she: he
+he_she_cap: He
+his_her: his
+his_her_cap: His
+him_her: him
+him_her_cap: Him
+dx1: attention-deficit/hyperactivity disorder (ADHD)
+dx2: anxiety
+dx3: depression
+
+email:
+  info: joey.trampush@brainworkup.org
+  support: info@brainworkup.org
+
+engine:
+  jupyter: "[Jupyter](https://jupyter.org)"
+  knitr: "[Knitr](<https://yihui.name/knitr>)"
+
+books:
+  adhd2.0: "[ADHD 2.0](https://drhallowell.com/read/books-by-ned/)"
+  take_charge_adhd: "[Taking Charge of Adult ADHD, Second Edition: Proven Strategies to Succeed at Work, at Home, and in Relationships](https://www.guilford.com/books/Taking-Charge-of-Adult-ADHD/Russell-Barkley/9781462546855)"
+  psych_central: "[PsychCentral for Adult ADHD](https://psychcentral.com/adhd/adhd-resources#for-adults-with-adhd)"
+  launch_adhd: "[Launching in Young Adulthood with ADHD… Ready or Not!](https://www.chrisdendy.com/product-page/launching-in-young-adulthood-with-adhd-ready-or-not)"
