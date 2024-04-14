@@ -1,7 +1,5 @@
 ## Emotional/Behavioral/Personality {#sec-emotion}
 
-<!-- {{< include _02-10_emotion_child_text.qmd >}} -->
-
 ```{r}
 #| label: setup-emotion
 #| include: false
@@ -351,8 +349,9 @@ bwu::dotplot(
 
 ```{=typst}
 #let domain(title: none, file_qtbl, file_fig) = {
-  let font = (font: "Fira Sans", size: 9pt)
+  let font = (font: "Merriweather", size: 0.7em)
   set text(..font)
+  pad(top: 0.5em)[]
     grid(
       columns: (50%, 50%),
       gutter: 8pt,
@@ -363,8 +362,10 @@ bwu::dotplot(
           ),
         figure([#image(file_fig, width: auto)],
           caption: figure.caption(position: bottom, [
-            The data presented here is based on Michelle Elliott's rating of Biggie's behavior using the BASC-3 Parent Rating Scales form. Scale scores in the Clinically Significant range suggest a high level of impairment. Scores in the At-Risk range may identify a significant problem that may not be severe enough to require formal treatment or may identify the potential of developing a problem that needs careful monitoring.
+
+            The data presented here is based on {{< var observer >}}'s rating of {{< var first_name >}}'s behavior using the BASC-3 Parent Rating Scales form. Scale scores in the Clinically Significant range suggest a high level of impairment. Scores in the At-Risk range may identify a significant problem that may not be severe enough to require formal treatment, or may identify the potential of developing a problem that needs careful monitoring.
             ]),
+          
           placement: none,
           kind: "image",
           supplement: [Figure],
@@ -391,7 +392,7 @@ bwu::dotplot(
 
 ```{=typst}
 #let domain(title: none, file_qtbl, file_fig) = {
-  let font = (font: "Fira Sans", size: 9pt)
+  let font = (font: "Merriweather", size: 0.7em)
   set text(..font)
     grid(
       columns: (50%, 50%),
@@ -403,7 +404,7 @@ bwu::dotplot(
           ),
         figure([#image(file_fig, width: auto)],
           caption: figure.caption(position: bottom, [
-            The data presented here is based on Biggie's ratings of herself using the BASC-3 Self-Report of Personality form. Scale scores in the Clinically Significant range suggest a high level of impairment. Scores in the At-Risk range may identify a significant problem that may not be severe enough to require formal treatment or may identify the potential of developing a problem that needs careful monitoring.
+            The data presented here is based on {{< var first_name >}}'s self-reported ratings using the BASC-3 Self-Report of Personality form. Scale scores in the Clinically Significant range suggest a high level of impairment. Scores in the At-Risk range may identify a significant problem that may not be severe enough to require formal treatment, or may identify the potential of developing a problem that needs careful monitoring.
             ]),
           placement: none,
           kind: "image",
