@@ -12,13 +12,15 @@ Developmental History (SDH)
 - Comprehensive Executive Function Inventory (CEFI): Parent-completed
 - Comprehensive Executive Function Inventory (CEFI): Teacher-completed
 - Comprehensive Executive Function Inventory (CEFI): Youth-completed 
-- Conners 4th ed (Conners 4): Parent
-- Conners 4th ed (Conners 4): Teacher
-- Conners 4th ed (Conners 4): Self-Report
+- Conners' 4th ed (Conners 4): Parent
+- Conners' 4th ed (Conners 4): Teacher
+- Conners' 4th ed (Conners 4): Self-Report
 - PROMIS Sleep Assessments Pediatric Parent Proxy
 - Bracken School Readiness Assessment 4th ed (BSRA-4)
-- Wechsler Abbreviated Scale of Intelligence, 2nd ed (WASI-2)
+- Wechsler Preschool and Primary Scale of Intelligence, 4th ed (WPPSI-IV): Ages 2–3
+- Wechsler Preschool and Primary Scale of Intelligence, 4th ed (WPPSI-IV): Ages 4–7
 - Wechsler Intelligence Scale for Children, 5th ed (WISC-5)
+- Wechsler Abbreviated Scale of Intelligence, 2nd ed (WASI-2)
 - Kaufman Test of Educational Achievement, 3rd ed (KTEA-3)
 - NEPSY-II Developmental Neuropsychological Battery
 - Repeatable Battery for the Assessment of Neuropsychological Status (RBANS)
@@ -29,12 +31,10 @@ Scale
 - Rey-Osterrieth Complex Figure Test (ROCFT)
 - Trail Making Test (TMT)
 - Grooved Pegboard Test
-- Delis-Kaplan Executive Function System (D-KEFS): Color-Word Interference Test
-- CELF Preschool-3
-- CELF-5 Ages 5-8
-- CELF-5 Ages 9-21
+- Delis-Kaplan Executive Function System (D-KEFS)
+- Clinical Evaluation of Language Fundamentals Preschool, 3rd ed (CELF Preschool-3)
+- Clinical Evaluation of Language Fundamentals, 5th ed (CELF-5): Ages 5-8
+- Clinical Evaluation of Language Fundamentals, 5th ed (CELF-5): Ages 9-21
 - Dot Counting Test (DCT)
-- WPPSI-IV Ages 2–3
-- WPPSI-IV Ages 4–7
 - Wechsler Individual Achievement Test, 4th ed (WIAT-4): Word Reading, Reading
 Comprehension, Pseudoword Decoding, Orthographic Fluency, Decoding Fluency
