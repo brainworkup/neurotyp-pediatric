@@ -37,6 +37,8 @@ and information gathered across multiple days of evaluation. Treatment planning
 and plans for test accommodations were discussed with {{< var first_name >}} during the
 feedback visit on the final day of the examination.
 
+Jessica was referred by her pediatrician, Dr. Stillwell, due to problems with attention and hyperactivity. According to her mother, Jessica has problems sitting still, concentrating, and following multistep directions. According to her teacher’s report, she is often out of her seat and disrupts other children during class. Jessica was evaluated to determine whether she meets criteria for Attention-Deficit/Hyperactivity Disorder and to assist with educational planning at school.
+
 ## Background
 
 <!-- **Information to Include in Background Information Section**
