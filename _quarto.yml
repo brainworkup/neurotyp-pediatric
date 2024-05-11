@@ -1,6 +1,6 @@
 project:
   type: default
-  execute-dir: file
+  # execute-dir: file
   render:
     - Biggie.qmd
 
