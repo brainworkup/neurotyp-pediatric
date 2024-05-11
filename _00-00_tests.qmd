@@ -46,6 +46,6 @@
 - Trail Making Test (TMT)
 - Wechsler Abbreviated Scale of Intelligence, 2nd ed (WASI-2)
 - Wechsler Individual Achievement Test, 4th ed (WIAT-4): Word Reading, Reading Comprehension, Pseudoword Decoding, Orthographic Fluency, Decoding Fluency
-- Wechsler Intelligence Scale for Children, 5th ed (WISC-V)
+- Wechsler Intelligence Scale for Children, 5th ed (WISC-5)
 - Wechsler Preschool and Primary Scale of Intelligence, 4th ed, Ages 2-3 (WPPSI-IV)
 - Wechsler Preschool and Primary Scale of Intelligence, 4th ed, Ages 4-7 (WPPSI-IV)
