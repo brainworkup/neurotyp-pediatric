@@ -5,8 +5,10 @@
 ```{r}
 #| label: setup-verbal
 #| include: false
+
 # domain
 domains <- c("Verbal/Language")
+
 # phenotype
 pheno <- "verbal"
 ```
@@ -14,25 +16,61 @@ pheno <- "verbal"
 ```{r}
 #| label: export-verbal
 #| include: false
-verbal <- readr::read_csv("neurocog.csv") |>
-  dplyr::filter(domain == domains) |>
-  dplyr::filter(!is.na(z_mean_domain)) |>
+
+# Read the CSV file into a data frame
+verbal <- readr::read_csv("neurocog.csv")
+
+# Filter the data frame to keep only rows where 'domain' equals 'domains'
+verbal <- verbal |> dplyr::filter(domain == domains)
+
+verbal <- verbal |>
   dplyr::select(
-    scale, score, z, percentile, range, test_name,
-    domain, subdomain, narrow, pass, verbal, timed, description, result,
-    z_mean_domain, z_sd_domain, z_mean_subdomain,
-    z_sd_subdomain, z_mean_narrow, z_sd_narrow, z_mean_pass, z_sd_pass,
-    z_mean_verbal, z_sd_verbal, z_mean_timed, z_sd_timed
+    test,
+    test_name,
+    scale,
+    raw_score,
+    score,
+    ci_95,
+    percentile,
+    range,
+    domain,
+    subdomain,
+    narrow,
+    pass,
+    verbal,
+    timed,
+    description,
+    result,
+    z,
+    z_mean_domain,
+    z_sd_domain,
+    z_mean_subdomain,
+    z_sd_subdomain,
+    z_mean_narrow,
+    z_sd_narrow,
+    z_mean_pass,
+    z_sd_pass,
+    z_mean_verbal,
+    z_sd_verbal,
+    z_mean_timed,
+    z_sd_timed
   )
-readr::write_csv(verbal, paste0(pheno, ".csv"))
+
+# Write the resulting data frame to a new CSV file
+# The file name is created by concatenating the 'pheno' variable and ".csv"
+# NA values are replaced with an empty string in the output file
+# Column names are included in the output file
+# If the file already exists, it is overwritten (not appended)
+readr::write_excel_csv(verbal, paste0(pheno, ".csv"), na = "", col_names = TRUE, append = FALSE)
 ```
 
 ```{r}
 #| label: data-verbal
 #| include: false
 
-# read and filter data
-data <- bwu::read_data(pheno = pheno)
+# Read data and filter
+data <- verbal
+
 scales <- c(
   "Academic Language Readiness Index",
   "Auditory Comprehension Colors",
@@ -90,7 +128,16 @@ scales <- c(
   "Word Structure",
   "Writing"
 )
-data_verbal <- bwu::filter_data(data, domain = domains, scale = scales)
+
+# Filter the data using the filter_data function from the bwu library
+# The domain is specified by the 'domains' variable
+# The scale is specified by the 'scales' variable
+data_verbal <-
+  bwu::filter_data(
+    data,
+    domain = domains,
+    scale = scales
+  )
 ```
 
 ```{r}
@@ -98,7 +145,8 @@ data_verbal <- bwu::filter_data(data, domain = domains, scale = scales)
 #| cache: true
 #| include: false
 
-bwu::cat_neuropsych_results(data = data_verbal, file = "_02-03_verbal_text.qmd")
+# export text
+bwu::cat_neuropsych_results(data = verbal, file = "_02-03_verbal_text.qmd")
 ```
 
 ```{r}
@@ -106,34 +154,38 @@ bwu::cat_neuropsych_results(data = data_verbal, file = "_02-03_verbal_text.qmd")
 #| dev: tikz
 #| fig-process: pdf2png
 #| include: false
+
+# Set the default engine for tikz to "xetex"
 options(tikzDefaultEngine = "xetex")
 
-# footnotes
-fn_scaled_score <- gt::md("Scaled Score: Mean = 10 [50th‰], SD ± 3 [16th‰, 84th‰]")
-fn_standard_score <- gt::md("Index Score: Mean = 100 [50th‰], SD ± 15 [16th‰, 84th‰]")
-fn_t_score <- gt::md("_T_-Score: Mean = 50 [50th‰], SD ± 10 [16th‰, 84th‰]")
-fn_z_score <- "_z_-Score: Mean = 0 [50th‰], SD ± 1 [16th‰, 84th‰]"
-
-pheno <- "verbal"
+# args
 table_name <- "table_verbal"
-grp_verbal <- list(
-  scaled_score = c("WAIS-IV", "WISC-5", "NEPSY-2", "D-KEFS"),
-  standard_score = c("NAB"),
-  t_score = c("NAB", "NIH EXAMINER", "WASI-2")
-)
 vertical_padding <- 0
 multiline <- TRUE
 
+# footnotes
+fn_scaled_score <- gt::md("Scaled score: Mean = 10 [50th‰], SD ± 3 [16th‰, 84th‰]")
+fn_standard_score <- gt::md("Index score: Mean = 100 [50th‰], SD ± 15 [16th‰, 84th‰]")
+fn_t_score <- gt::md("_T_-score: Mean = 50 [50th‰], SD ± 10 [16th‰, 84th‰]")
+
+# Define the groups for the table
+grp_verbal <- list(
+  scaled_score = c("WAIS-IV", "WISC-5", "NEPSY-2", "D-KEFS", "WPPSI-IV", "CELF-5"),
+  standard_score = c("NAB", "WPPSI-IV", "NAB-S", "CELF-5"),
+  t_score = c("NAB", "NIH EXAMINER", "WASI-2")
+)
+
+# make `gt` table
 bwu::tbl_gt(
   data = data_verbal,
   pheno = pheno,
   table_name = table_name,
   fn_scaled_score = fn_scaled_score,
-  fn_t_score = fn_t_score,
   fn_standard_score = fn_standard_score,
+  fn_t_score = fn_t_score,
   grp_scaled_score = grp_verbal[["scaled_score"]],
+  grp_standard_score = grp_verbal[["standard_score"]],
   grp_t_score = grp_verbal[["t_score"]],
-  # grp_standard_score = grp_verbal[["standard_score"]],
   dynamic_grp = grp_verbal,
   vertical_padding = vertical_padding,
   multiline = multiline
@@ -141,18 +193,21 @@ bwu::tbl_gt(
 ```
 
 ```{r}
-#| label: fig-verbal
+#| label: fig-verbal-subdomain
 #| include: false
 #| fig-cap: "Verbal and language functioning refers to the ability to access and apply acquired word knowledge, to verbalize meaningful concepts, to understand complex multistep instructions, to think about verbal information, and to express oneself using words."
 
-# args
-data_verbal <- dplyr::filter(data_verbal, subdomain != "Language")
+# Arguments
+colors <- NULL
+return_plot <- Sys.getenv("RETURN_PLOT")
+filename <- "fig_verbal_subdomain.svg"
+
+# variables to plot
 x <- data_verbal$z_mean_subdomain
 y <- data_verbal$subdomain
-colors <- NULL
-# return_plot <- TRUE
-return_plot <- Sys.getenv("RETURN_PLOT")
-filename <- "fig_verbal.svg"
+
+# Suppress warnings from being converted to errors
+options(warn = 1) # Set warn to 1 to make warnings not halt execution
 
 # Make dotplot
 bwu::dotplot(
@@ -161,9 +216,84 @@ bwu::dotplot(
   y = y,
   colors = colors,
   return_plot = return_plot,
-  filename = filename
+  filename = filename,
+  na.rm = TRUE
 )
+
+# Reset warning options to default if needed
+options(warn = 0) # Reset to default behavior
 ```
+
+```{r}
+#| label: fig-verbal-narrow
+#| include: false
+#| fig-cap: "Verbal and language functioning refers to the ability to access and apply acquired word knowledge, to verbalize meaningful concepts, to understand complex multistep instructions, to think about verbal information, and to express oneself using words."
+
+# Arguments
+colors <- NULL
+return_plot <- Sys.getenv("RETURN_PLOT")
+filename <- "fig_verbal_narrow.svg"
+
+# variables to plot
+x <- data_verbal$z_mean_narrow
+y <- data_verbal$narrow
+
+# Suppress warnings from being converted to errors
+options(warn = 1) # Set warn to 1 to make warnings not halt execution
+
+# Make dotplot
+bwu::dotplot(
+  data = data_verbal,
+  x = x,
+  y = y,
+  colors = colors,
+  return_plot = return_plot,
+  filename = filename,
+  na.rm = TRUE
+)
+
+# Reset warning options to default if needed
+options(warn = 0) # Reset to default behavior
+```
+
+
+<!-- ```{=typst}
+#let domain(title: none, file_qtbl, file_fig) = {
+  let font = (font: "Merriweather", size: 0.7em)
+  set text(..font)
+  pad(top: 0.5em)[]
+    grid(
+      columns: (50%, 50%),
+      gutter: 8pt,
+        figure([#image(file_qtbl)],
+          caption: figure.caption(position: top, [#title]),
+          kind: "qtbl",
+          supplement: [Table],
+          ),
+        figure([#image(file_fig)],
+          caption: figure.caption(position: bottom, [
+            Verbal and language functioning refers to the ability to access and apply acquired word knowledge, to verbalize meaningful concepts, to understand complex multistep instructions, to think about verbal information, and to express oneself using words.
+            ]),
+          placement: none,
+          kind: "image",
+          supplement: [Figure],
+          gap: 0.5em,
+          ),
+        )
+    }
+``` -->
+
+<!-- ```{=typst}
+#let title = "Verbal/Language"
+#let file_qtbl = "table_verbal.png"
+#let file_fig = "fig_verbal_subdomain.svg"
+#domain(
+  title: [#title Test Scores],
+  file_qtbl,
+  file_fig
+)
+``` -->
+
 
 ```{=typst}
 #let domain(title: none, file_qtbl, file_fig) = {
@@ -186,18 +316,17 @@ bwu::dotplot(
           kind: "image",
           supplement: [Figure],
           gap: 0.5em,
-        ),
-      )
-  }
+          ),
+        )
+    }
 ```
-
 ```{=typst}
 #let title = "Verbal/Language"
 #let file_qtbl = "table_verbal.png"
-#let file_fig = "fig_verbal.svg"
+#let file_fig = "fig_verbal_narrow.svg"
 #domain(
   title: [#title Test Scores],
   file_qtbl,
   file_fig
-  )
+)
 ```
