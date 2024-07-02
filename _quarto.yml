@@ -2,11 +2,10 @@ project:
   type: default
   execute-dir: file
   render:
-    - Biggie.qmd
-    # - {{< var patient >}}.qmd
+    - {{< var patient >}}.qmd
 
 format:
-  neurotyp-typst:
+  neurotyp-pediatric-typst:
     keep-typ: true
     keep-md: true
     papersize: "us-letter"

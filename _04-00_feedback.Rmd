@@ -1,12 +1,12 @@
 ---
 title: "Neuropsychological Evaluation Results"
 patient: Biggie
-date: 2024-01-01
+date: 2023-11-08
 author: "Joey Trampush, PhD"
 institute: "Department of Psychiatry and the Behavioral Sciences"
 output:
   xaringan::moon_reader:
-    css: ["src/css/npsych-fonts.css", "src/css/npsych-theme.css"]
+    css: ["npsych-fonts.css", "npsych-theme.css"]
     lib_dir: libs
     self_contained: true
     anchor_sections: false
@@ -24,7 +24,7 @@ output:
           </div>
         </div>
       includePresenterNotes: yes
-      beforeInit: ["src/css/macros.js"]
+      beforeInit: ["macros.js"]
 ---
 
 ```{r patient, include=FALSE}
@@ -89,7 +89,7 @@ validity <-
 
 name: title
 class: title-slide, center, middle
-background-image: url(src/img/logo_usc_ksom_black.jpg)
+background-image: url(logo_usc_ksom_black.jpg)
 background-position: bottom
 background-repeat: no-repeat
 background-size: 25%
@@ -110,7 +110,7 @@ background-size: contain
 ### Distribution of Scores: _Population-level Interpretation_
 
 ```{r, gauss-plot1, fig.cap = 'Performance classification of neuropsychological test scores in the general population.', fig.retina = 3, fig.asp = 0.5, out.width = '50%'}
-knitr::include_graphics("src/img/plot_narrow.png", auto_pdf = TRUE)
+knitr::include_graphics("plot_narrow.png", auto_pdf = TRUE)
 ```
 
 ---
@@ -118,7 +118,7 @@ knitr::include_graphics("src/img/plot_narrow.png", auto_pdf = TRUE)
 class: left, middle, right top
 background-color: var(--near-black)
 class: background
-background-image: url(src/img/logo_usc_ksom_black.jpg)
+background-image: url(logo_usc_ksom_black.jpg)
 background-position: right top
 background-repeat: repeat
 background-size: 15%

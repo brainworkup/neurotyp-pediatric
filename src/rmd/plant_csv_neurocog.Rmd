@@ -3,7 +3,7 @@ title: "Plant CSV files of Neurocognitive Tests"
 params:
   patient:
     label: "Patient First Name:"
-    value: Leo
+    value: Biggie
     input: text
   test_name:
     label: "Full Name of Test/Test Battery:"
@@ -350,7 +350,7 @@ output:
 
 ```{r setup, include = FALSE}
 Sys.setenv(
-  JAVA_HOME = "/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home"
+  JAVA_HOME = "/Library/Java/JavaVirtualMachines/graalvm-community-openjdk-22.0.1+8.1/Contents/Home"
 )
 options(java.parameters = "-Xmx16000m")
 knitr::opts_chunk$set(

@@ -12,7 +12,7 @@
 
 - **Speech-Language Therapy:** Working with a speech-language pathologist can help improve memory skills, particularly for verbal material.
 
-- **Psychoeducation:** To empower Biggie with self-awareness and enable {{< var his_her >}} to advocate for {{< var his_her >}} needs in various settings.
+- **Psychoeducation:** To empower {{< var patient >}} with self-awareness and enable {{< var his_her >}} to advocate for {{< var his_her >}} needs in various settings.
 
 - Additional support is recommended in areas like attentional function, processing speed, and cognitive efficiency. This can be achieved through occupational therapy, the use of organizational tools, and creating a distraction-free environment.
 
@@ -24,9 +24,9 @@
 
 - **Accommodated Testing:** Extended time accommodations are recommended due to relative weakness in processing speed and academic fluency.
 
-- **Calculator Use:** Please consider allowing Biggie to utilize a calculator for class assignments and examinations as {{< var he_she >}} progresses in the mathematics curriculum.
+- **Calculator Use:** Please consider allowing {{< var patient >}} to utilize a calculator for class assignments and examinations as {{< var he_she >}} progresses in the mathematics curriculum.
 
-- Biggie should receive additional support in mathematics through:
+- {{< var patient >}} should receive additional support in mathematics through:
   - Individual or small group tutoring.
   - Visual aids and hands-on activities.
   - Technology-based learning tools.
@@ -64,20 +64,4 @@
 ## Recommendations for Follow-Up Evaluation
 
 - A follow-up assessment in 12-18 months is suggested to measure progress and assess the interventions' impact, unless urgent concerns arise. Continuous monitoring and reassessment are vital to adjust support as {{< var first_name >}} develops and {{< var his_her >}} needs change.
-
-## Other
-
-Recommendations
-1. Given the fact that her verbal abilities are an area of relative weakness and she exhibits executive functioning deficits, a comprehensive evaluation of {{< var first_name >}}'s cognitive and academic abilities is necessary to rule out the possibility of learning difficulties and ensure that she is provided with appropriate services within the educational setting.
-2. Based on behavioral observations of difficulty with recall, especially of verbal material (an ability closely aligned with academic success), a comprehensive assessment of memory functions with an instrument such as the Test of Memory and Learning (TOMAL) may be useful in instructional planning.
-3. A multimodal approach to treating attention problems is generally recommended, including environmental modifications, counseling, and medication. {{< var his_her >}}'s parents should consult with her pediatrician about the potential pros and cons of medical management for her attention disorders.
-4. To assist with problems with attention and organization, the following classroom accommodations are recommended:
-
-a. Jessica should continue to be given preferential seating, near the teacher and away from doors and windows to help her attend to lessons. She should be surrounded by peers with good classroom behavior, and placed in a work area with limited distractions.
-b. Because sitting in a chair is difficult for her, interactive learning with manipulatives will work well for Jessica. Provide Jessica with both visual aids and verbal instruction to increase the likelihood that she is attending to directions.
-c. Given Jessica's attentional issues, it will be important to make sure that her attention is focused before presenting information. She may have trouble sustaining her attention and effort for any extended period and would benefit from occasional breaks. When Jessica's attention has waned, she often becomes unaware of what is going on around her. As a result, when teachers refocus her attention it is important that they also redirect her to task.
-d. Avoid multistep directions whenever possible. Provide Jessica with simple, one-step directions, then monitor to make sure that she is completing the task correctly. Provide demonstrations when possible.
-e. Due to her problems with attention, Jessica should take tests in a quiet room, free from distractions.
-f. Given Jessica's attention deficits, effort should be made to avoid singling her out or embarrassing her for not paying attention. Rather, she could be "alerted" in advance when she is going to be called on in school, so that she can prepare herself.
-g. To assist with organization, it would be helpful to have someone meet with Jessica at the end of the school day to review homework assignments, including making sure she knows the steps involved, where to begin, and what materials are needed.
 
