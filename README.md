@@ -7,7 +7,7 @@ quarto use template brainworkup/neurotyp-pediatric
 ```
 
 This will install the format extension and create an example .qmd file that you
-can use as a starting place for your document.
+can use as a starting place for your patient report.
 
 ## Update report template
 

@@ -11,29 +11,22 @@ _extensions/neurotyp/typst-template.pdf
 _extensions/neurotyp/typst-template.typ.bk
 _freeze/
 !.env.project
-!template.{qmd,pdf}
 .dbxignore
 .DS_Store
 .env
 .env*
 .flaskenv*
 .history/
-.httr-oauth
 .idea
-.Rdata
-.Rhistory
 .Rproj.user
 .tmp.drivedownload/
 .tmp.driveupload/
 .vscode/
 .vscode/settings.json
+.vscode/settings.json
 *_cache/
 *_files/
-*.aux
 *.dmg
-*.fdb_latexmk
-*.fls
-*.log
 *.pkg
 *.RData
 *.Rhistory
@@ -42,16 +35,14 @@ _freeze/
 /_*.local
 /.luarc.json
 /.quarto/
-/*.bst
-/*.cls
 /package/out
-/template_files/
 /tests/cov_profile
 /tests/cov_profile.lcov
 /tests/test-out.json
 # _*_*.html
 # _*_*.typ
 # _extensions/
+# .quartoignore file
 # *.jpg
 # *.pdf
 # *.png
@@ -86,6 +77,4 @@ report-output.tex
 report.Rmd
 run_scrape_pdf_nse.R
 secure_data
-template.*
 validity.csv
-NEPSY-II_GeneralBattery.xlsx
