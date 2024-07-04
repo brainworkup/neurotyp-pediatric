@@ -1,26 +1,125 @@
 ---
 title: "Pluck Tables from KTEA-3"
+params:
+  patient: Felix
+  test:
+    label: "Test"
+    value: ktea3
+    input: select
+    multiple: no
+    choices:
+      - ktea3
+      - ktea3_form_a
+      - ktea3_form_b
+  test_name:
+    label: "Test Name"
+    value: "KTEA-3"
+    input: select
+    multiple: no
+    choices:
+      - "KTEA-3"
+  file:
+    label: "No file selected"
+    value: file
+    input: file
+  pages: [12, 13]
+  table1:
+    label: "Table 1: Core Composite Score Summary"
+    value: ""
+    input: select
+    multiple: yes
+    choices:
+      ACADEMIC SKILLS:
+      - Math Concepts & Applications
+      - Letter & Word Recognition
+      - Written Expression
+      - Math Computation
+      - Spelling
+      - Reading Comprehension
+      READING:
+      - Reading Composite
+      - Letter & Word Recognition
+      - Reading Comprehension
+      MATH:
+      - Math Composite
+      - Math Concepts & Applications
+      - Math Computation
+      WRITING:
+      - Written Language Composite
+      - Written Expression
+      - Spelling
+  table2:
+    label: "Table 2: Supplemental Composite Score Summary"
+    value: ""
+    input: select
+    multiple: yes
+    choices:
+      Sound-Symbol Composite: #todo
+      - Basic Reading
+      - Pseudoword Decoding
+      - Phonemic Proficiency
+      - Word Reading
+      DECODING:
+      - Decoding
+      - Pseudoword Decoding2
+      - Word Reading2
+      READING FLUENCY:
+      - Reading Fluency
+      - Oral Reading Fluency
+      - Orthographic Fluency
+      - Decoding Fluency
+      PHONOLOGICAL PROCESSING:
+      - Phonological Processing
+      - Pseudoword Decoding3
+      - Phonemic Proficiency2
+      ORTHOGRAPHIC PROCESSING:
+      - Orthographic Processing
+      - Orthographic Fluency2
+      - Spelling
+      DYSLEXIA INDEX:
+      - Dyslexia Index
+      - Word Reading3
+      - Pseudoword Decoding4
+      - Orthographic Fluency3
+      OTHER:
+      - Orthographic Processing Extended
+      - Orthographic Choice
+      - Math Fluency
+      - Math Fluency-Addition
+      - Math Fluency-Subtraction
+      - Math Fluency-Multiplication
+      - Oral Language
+      - Listening Comprehension
+      - Oral Expression
+  colnames:
+    label: "Column Names"
+    value: [scale, raw_score, score, ci_95, percentile, category, age_equiv, grade_equiv, gsv]
+    input: select
+    multiple: yes
+    choices:
+      - scale
+      - raw_score
+      - score
+      - ci_95
+      - percentile
+      - category
+      - age_equiv
+      - grade_equiv
+      - gsv
+  keep:
+    label: "Variables to Keep"
+    value: [scale, raw_score, score, percentile, ci_95]
+    input: select
+    multiple: yes
+    choices:
+      - scale
+      - raw_score
+      - score
+      - percentile
+      - ci_95
 ---
 
 # KTEA-3
-
-## Test
-
-```{r test}
-test <- "ktea3"
-```
-
-## Patient initials
-
-```{r patient}
-patient <- "Biggie"
-```
-
-## Pages
-
-```{r pages}
-pages <- c(36, 37)
-```
 
 ## Load libraries
 
@@ -36,89 +135,69 @@ knitr::opts_chunk$set(
   warning = FALSE,
   error = TRUE
 )
-library(tabulapdf)
+library(DT)
+library(fs)
+library(glue)
+library(hablar)
+library(here)
+library(magrittr)
+library(miniUI)
+library(pdftools)
 library(rJava)
 library(shiny)
-library(miniUI)
-library(here)
-library(pdftools)
-library(tidyverse)
-library(fs)
-library(magrittr)
-library(kableExtra)
-library(DT)
-library(hablar)
+library(tabulapdf)
 library(tibble)
+library(tidyverse)
+library(bwu)
 ```
 
-## Load functions
+## Test
 
-```{r source-functions}
-source(file = here::here("R/gpluck_locate_areas.R"), local = knitr::knit_global())
-source(file = here::here("R/gpluck_extract_table.R"), local = knitr::knit_global())
-source(file = here::here("R/gpluck_make_columns.R"), local = knitr::knit_global())
-source(file = here::here("R/gpluck_make_score_ranges.R"), local = knitr::knit_global())
+```{r test}
+test <- "ktea3"
+test_name <- "KTEA-3"
 ```
 
-# tabulapdf
+## Patient initials
 
-Need to check each PDF to see what page(s) tables are located on.
-Will be different for each individual.
-
-## Upload/attach PDF
-
-```{r choose}
-ktea3_pdf <- file.choose()
+```{r patient}
+patient <- "Felix"
 ```
 
-```{r save}
-readr::write_lines(ktea3_pdf, here::here(patient, "pre_csv", "ktea3_pdf"))
+## Pages
+
+```{r pages}
+pages <- c(12,13) # move these to yaml
 ```
 
-```{r read}
-ktea3_pdf <- readr::read_lines(here::here(patient, "pre_csv", "ktea3_pdf"))
+## Load text/csv file and save as file.path
+
+```{r file}
+input_file_path <- file.choose()
+saveRDS(input_file_path, "ktea3.rds")
+# input_file_path <- file.path(params$file)
 ```
 
-## Locate areas
+## UseThis - updated July 2024
 
-```{r locate-areas-pdf}
-areas <- gpluck_locate_areas(
-  file = ktea3_pdf,
-  pages = pages
-)
-```
-
-```{r save-areas}
-readr::write_rds(areas, here::here(patient, "pre_csv", "area_ktea3.rds"))
-```
-
-```{r read-areas-ktea3}
-areas <- readr::read_rds(here::here(patient, "pre_csv", "area_ktea3.rds"))
-```
-
-## Extract tables
-
-Change pages per patient.
-
-```{r extract-table-pdf}
-plucked_tables <- gpluck_extract_table(
-  file = ktea3_pdf,
+```{r}
+# This works well so far
+ktea3 <- tabulapdf::extract_tables(
+  file = input_file_path,
   pages = pages,
-  area = areas,
-  guess = NULL,
-  method = "lattice",
-  output = "matrix"
+  output = "matrix",
+  guess = TRUE
 )
+table1 <- data.table::as.data.table(ktea3[[1]])
+table2 <- data.table::as.data.table(ktea3[[2]])
 ```
 
 # Tidy Tables
 
 ## Column names
 
-This will vary by measure/table.
-
-```{r colnames}
-column_names <- c(
+```{r}
+colnames <- c(
   "scale",
   "raw_score",
   "sum_subtest",
@@ -128,57 +207,41 @@ column_names <- c(
   "category",
   "age_equiv",
   "gsv"
-)
+) # todo: move this to yaml
 ```
 
 ## Convert to tibble and format
 
-```{r table1}
-table1 <- data.frame(plucked_tables[[1]])
-
-table1 <- table1 |> slice(-1) # reformat
-
+```{r}
+library(tibble)
+table1 <- as.tibble(table1)
+table1 <- table1 |> slice(-1,-2)
 table1[1, 1] <- c("Academic Skills Battery (ASB) Composite")
-
-colnames(table1) <- column_names
+colnames(table1) <- colnames
 
 table1$raw_score <- as.numeric(table1$raw_score, na.rm = TRUE)
-
 table1$sum_subtest <- as.numeric(table1$sum_subtest, na.rm = TRUE)
-
 table1$score <- as.numeric(table1$score, na.rm = TRUE)
-
 table1$percentile <- as.numeric(table1$percentile, na.rm = TRUE)
-
 table1$gsv <- as.numeric(table1$gsv, na.rm = TRUE)
-
 ```
 
-```{r table2}
-table2 <- data.frame(plucked_tables[[2]])
-
-colnames(table2) <- column_names
+```{r}
+table2 <- as.tibble(table2)
+table2 <- table2 |> slice(-1,-2)
+colnames(table2) <- colnames
 
 table2$raw_score <- as.numeric(table2$raw_score, na.rm = TRUE)
-
 table2$sum_subtest <- as.numeric(table2$sum_subtest, na.rm = TRUE)
-
 table2$score <- as.numeric(table2$score, na.rm = TRUE)
-
 table2$percentile <- as.numeric(table2$percentile, na.rm = TRUE)
-
 table2$gsv <- as.numeric(table2$gsv, na.rm = TRUE)
 ```
 
 ## Select variables to keep
 
-This will vary by measure.
-
-```{r keep}
-keep <- c("scale", "raw_score", "score", "percentile", "ci_95")
-```
-
-```{r keep-select}
+```{r}
+keep <- c("scale", "raw_score", "score", "ci_95", "percentile", "age_equiv")
 table1 <- table1 |> dplyr::select(all_of(keep))
 table2 <- table2 |> dplyr::select(all_of(keep))
 ```
@@ -188,7 +251,7 @@ table2 <- table2 |> dplyr::select(all_of(keep))
 ## Make columns
 
 ```{r mutate1}
-table1 <- gpluck_make_columns(
+table1 <- bwu::gpluck_make_columns(
   table1,
   range = "",
   test = "ktea3",
@@ -206,8 +269,8 @@ table1 <- gpluck_make_columns(
 )
 ```
 
-```{r mutate2}
-table2 <- gpluck_make_columns(
+```{r}
+table2 <- bwu::gpluck_make_columns(
   table2,
   range = "",
   test = "ktea3",
@@ -216,8 +279,8 @@ table2 <- gpluck_make_columns(
   subdomain = "",
   narrow = "",
   pass = "",
-  verbal = "Verbal",
-  timed = "Untimed",
+  verbal = "",
+  timed = "",
   test_type = "npsych_test",
   score_type = "standard_score",
   description = "",
@@ -232,11 +295,9 @@ table1 <- bwu::gpluck_make_score_ranges(table = table1, test_type = "npsych_test
 table2 <- bwu::gpluck_make_score_ranges(table = table2, test_type = "npsych_test")
 ```
 
-## Domain
+## Domains for language tests
 
-As necessary.
-
-```{r domain2}
+```{r}
 table2 <-
   table2 |>
   mutate(
@@ -254,11 +315,9 @@ table2 <-
   )
 ```
 
-## Subdomain
+## Subdomains
 
-As necessary.
-
-```{r subdomain1}
+```{r}
 table1 <-
   table1 |>
   mutate(
@@ -276,9 +335,7 @@ table1 <-
       TRUE ~ as.character(subdomain)
     )
   )
-```
 
-```{r subdomain2}
 table2 <-
   table2 |>
   mutate(
@@ -318,11 +375,9 @@ table2 <-
   )
 ```
 
-## Narrow subdomain
+## Narrow subdomains
 
-As necessary.
-
-```{r narrow1}
+```{r}
 table1 <-
   table1 |>
   mutate(
@@ -340,9 +395,7 @@ table1 <-
       TRUE ~ as.character(narrow)
     )
   )
-```
 
-```{r narrow2}
 table2 <-
   table2 |>
   mutate(
@@ -384,9 +437,7 @@ table2 <-
 
 ## PASS model
 
-As necessary.
-
-```{r pass1}
+```{r}
 table1 <-
   table1 |>
   mutate(
@@ -404,9 +455,7 @@ table1 <-
       TRUE ~ as.character(pass)
     )
   )
-```
 
-```{r pass2}
 table2 <-
   table2 |>
   mutate(
@@ -442,9 +491,7 @@ table2 <-
 
 ## Verbal vs Nonverbal
 
-As necessary.
-
-```{r verbal1}
+```{r}
 table1 <-
   table1 |>
   mutate(
@@ -456,9 +503,7 @@ table1 <-
       TRUE ~ as.character(verbal)
     )
   )
-```
 
-```{r verbal2}
 table2 <-
   table2 |>
   mutate(
@@ -474,9 +519,7 @@ table2 <-
 
 ## Timed vs Untimed
 
-As necessary.
-
-```{r timed2}
+```{r}
 table2 <-
   table2 |>
   mutate(
@@ -510,11 +553,9 @@ table2 <-
   )
 ```
 
-## Description
+## Descriptions
 
-As necessary.
-
-```{r description1}
+```{r}
 table1 <-
   table1 |>
   mutate(
@@ -532,9 +573,8 @@ table1 <-
       TRUE ~ as.character(description)
     )
   )
-```
 
-```{r description2}
+
 table2 <-
   table2 |>
   mutate(
@@ -570,7 +610,7 @@ table2 <-
 
 ## Glue results
 
-```{r glue-result}
+```{r}
 table1 <-
   table1 %>%
   tidytable::mutate(
@@ -592,21 +632,33 @@ table2 <-
 
 ## Relocate variables
 
-```{r relocate}
+```{r}
 table1 <- table1 |> dplyr::relocate(c(test, test_name), .before = scale)
 table2 <- table2 |> dplyr::relocate(c(test, test_name), .before = scale)
-# table2 <- table2 |> dplyr::relocate(c(raw_score, score, percentile, range, ci_95), .before = test)
 ```
 
 ## Merge tables
 
-```{r rbind}
+```{r}
 ktea3 <- rbind(table1, table2)
+```
+
+## Add patient initials
+
+```{r}
+ktea3$patient <- patient
+```
+
+## Remove rows with no data
+
+```{r}
+ktea3 <- ktea3 |> 
+  dplyr::filter(!is.na(description) & description != "") |> 
+  dplyr::filter(!is.na(score) & score != "")
 ```
 
 ## Write out final csv
 
-```{r write-csv}
-readr::write_csv(ktea3, here::here(patient, "csv", "ktea3.csv"), col_names = TRUE, na = "")
+```{r}
+readr::write_csv(ktea3, here::here("data", "csv", "ktea3.csv"), col_names = TRUE, na = "")
 ```
-

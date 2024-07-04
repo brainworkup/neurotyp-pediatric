@@ -1,7 +1,7 @@
 ---
 title: "Create table and csv for RBANS"
 params:
-  patient: Biggie
+  patient: Felix
   test:
     label: "Test"
     value: rbans
@@ -37,11 +37,11 @@ output:
 
 ```{r setup, include=F}
 # Set JAVA environment
-Sys.setenv(
-  JAVA_HOME =
-    "/Library/Java/JavaVirtualMachines/graalvm-community-openjdk-22.0.1+8.1/Contents/Home"
-)
-options(java.parameters = "-Xmx16000m")
+# Sys.setenv(
+#   JAVA_HOME =
+#     "/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home"
+# )
+# options(java.parameters = "-Xmx16000m")
 knitr::opts_chunk$set(
   root.dir = normalizePath("./"),
   echo = FALSE,
@@ -82,32 +82,16 @@ test_name <- params$test_name
 ## Load text/csv file and save as file.path
 
 ```{r file}
-#input_file_path <- file.choose()
-input_file_path <- file.path(params$file)
-```
-
-## Google Drive
-
-```{r}
-library(googledrive)
-
-# Set the scope to allow viewing and managing files in Google Drive
-drive_scopes(scopes = "https://www.googleapis.com/auth/drive.file")
-
-# Authenticate and create a drive
-drive_auth()
-drive <- drive_get()
-
-# Upload a file to the drive
-file_path <- "/Users/joey/My Drive/004004907_3_10_2024.csv"
-drive_upload(media = file_path, name = "004004907_3_10_2024.csv")
+input_file_path <- file.choose()
+saveRDS(input_file_path, "rbans.rds")
+# input_file_path <- file.path(params$file)
 ```
 
 ## RAW SCORES
 
 ```{r}
 library(tidyverse)
-input_file_path <- "data/004004907_3_10_2024.csv"
+input_file_path <- "data/004004907_3_10_2024Felix G 12 yo Follow-up ADHD NLD LD eval_scores.csv"
 test_name_prefix <- "RBANS Update Form A "
 output_file_path <- "data/processed_rbans_raw_data.csv"
 
@@ -167,8 +151,6 @@ rbans_raw <- pluck_rbans_raw(input_file_path, output_file_path = output_file_pat
 ## SCALED SCORES
 
 ```{r}
-# input_file_path <- "data/004004907_3_10_2024.csv"
-# test_name_prefix <- "RBANS Update Form A "
 output_file_path <- "data/processed_rbans_scaled_data.csv"
 
 # function
@@ -220,8 +202,6 @@ rbans_score <- pluck_rbans_score(input_file_path, test_name_prefix, output_file_
 ## SUBTEST COMPLETION TIMES
 
 ```{r}
-# input_file_path <- "data/004004907_3_10_2024.csv"
-# test_name_prefix <- "RBANS Update Form A "
 output_file_path <- "data/processed_rbans_completion_time_data.csv"
 
 # function
@@ -274,8 +254,6 @@ rbans_time <- pluck_rbans_completion_times(input_file_path, test_name_prefix, ou
 ## COMPOSITE SCORES
 
 ```{r}
-# input_file_path <- "data/004004907_3_10_2024.csv"
-# test_name_prefix <- "RBANS Update Form A "
 output_file_path <- "data/processed_rbans_composite_data.csv"
 
 # function
@@ -365,10 +343,10 @@ process_and_save_rbans_data <- function(rbans_raw,
     left_join(rbans_time, by = "scale")
   
   # Update specific percentile values
-  df$percentile[df$scale == "RBANS Update Form A Line Orientation"] <- 20
-  df$percentile[df$scale == "RBANS Update Form A Picture Naming"] <- 20
-  df$percentile[df$scale == "RBANS Update Form A List Recall"] <- 70
-  df$percentile[df$scale == "RBANS Update Form A List Recognition"] <- 50
+  df$percentile[df$scale == "RBANS Update Form A Line Orientation"] <- 37
+  df$percentile[df$scale == "RBANS Update Form A Picture Naming"] <- 37
+  df$percentile[df$scale == "RBANS Update Form A List Recall"] <- 76
+  df$percentile[df$scale == "RBANS Update Form A List Recognition"] <- 63
   
   # Recalculate percentiles based on score
   df <- df |>
@@ -412,7 +390,7 @@ df <- process_and_save_rbans_data(
   )
 
 # Write the combined data to a CSV file
-output_file_path <- "data/rbans.csv"
+output_file_path <- "data/csv/rbans.csv"
 write_csv(df, output_file_path)
 ```
 
@@ -695,7 +673,7 @@ rbans <-
 # EXPORT
 
 ```{r}
-readr::write_csv(rbans, here::here("data", "rbans.csv"), col_names = TRUE, na = "")
+readr::write_csv(rbans, here::here("data", "csv", "rbans.csv"), col_names = TRUE, na = "")
 ```
 
 ```{r}

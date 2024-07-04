@@ -41,7 +41,11 @@
 - NEPSY-II Developmental Neuropsychological Battery
 - NIH Executive Abilities--Measures and Instruments for Neurobehavioral Evaluation and Research (NIH EXAMINER): Unstructured Task, Behavioral Rating Scale
 - PROMIS Sleep Assessments Pediatric Parent Proxy
-- Repeatable Battery for the Assessment of Neuropsychological Status (RBANS)
+- Rating Scale of Impairment (RSI)
+- Repeatable Battery for the Assessment of Neuropsychological Status, Form A (RBANS)
+- Repeatable Battery for the Assessment of Neuropsychological Status, Form B (RBANS)
+- Repeatable Battery for the Assessment of Neuropsychological Status, Form C (RBANS)
+- Repeatable Battery for the Assessment of Neuropsychological Status, Form D (RBANS)
 - Rey-Osterrieth Complex Figure Test (ROCFT)
 - Trail Making Test (TMT)
 - Wechsler Abbreviated Scale of Intelligence, 2nd ed (WASI-2)
