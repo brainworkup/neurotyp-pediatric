@@ -143,7 +143,7 @@ scales <- c(
   "Depression",
   "Emotional Symptoms Index",
   "Externalizing Problems",
-  "Functional Communication"
+  "Functional Communication",
   "Hyperactivity",
   "Inattention/Hyperactivity",
   "Internalizing Problems",
