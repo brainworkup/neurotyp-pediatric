@@ -21,26 +21,19 @@
   set document(title: title, author: author)
 
   // Set page size, margins, and header.
-  set page(
-    paper: paper,
-    margin: margin,
-    header: locate(loc => if [#loc.page()] == [1] {
-      []
-    } else {
-      [
-        #set par(leading: 0.65em)
-        #set text(9pt)
-        #smallcaps[
-          *CONFIDENTIAL* \
-          #name \
-          #doe
-        ]
+  set page(paper: paper, margin: margin, header: locate(loc => if [#loc.page()] == [1] {
+    []
+  } else {
+    [
+      #set par(leading: 0.65em)
+      #set text(9pt)
+      #smallcaps[
+        *CONFIDENTIAL* \
+        #name \
+        #doe
       ]
-    }),
-    numbering: "1/1",
-    number-align: center,
-    columns: cols,
-  )
+    ]
+  }), numbering: "1/1", number-align: center, columns: cols)
 
   // align headers
   show heading.where(level: 0): set align(center)
@@ -85,8 +78,8 @@
   show link: underline
 
   // Logo
-  block(figure(image("src/logo.png")))
-  // block(figure(image("src/bwu_logo.png")))
+  block(figure(image("src/img/logo.png")))
+  // block(figure(image("src/img/bwu_logo.png")))
 
   // Title row.
   align(center)[
