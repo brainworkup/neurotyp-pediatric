@@ -78,3 +78,6 @@ report.Rmd
 run_scrape_pdf_nse.R
 secure_data
 validity.csv
+NEPSY-II_GeneralBattery.xlsx
+src/rmd/cars2_hf.xlsx
+src/rmd/cars2.xlsx

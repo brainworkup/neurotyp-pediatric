@@ -86,7 +86,7 @@ report-output.tex
 report.Rmd
 run_scrape_pdf_nse.R
 secure_data
-template.*
+# template.*
 validity.csv
 NEPSY-II_GeneralBattery.xlsx
 src/rmd/cars2_hf.xlsx
