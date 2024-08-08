@@ -5,8 +5,8 @@
 #| include: false
 #| eval: false
 
-patient <- "Biggie"
-scale <- "NeurobehavioralStatusExam_OtterAI_"
+patient <- "{{< var patient >}}"
+scale <- "NSE_otterai_"
 ext <- ".txt"
 file_path <- function(patient, scale, ext) {
   result <- ""
@@ -16,7 +16,7 @@ file_path <- function(patient, scale, ext) {
 input_path <- here::here(file_path)
 start_pattern <- "PATIENT:"
 end_pattern <- "PROVIDER"
-output_path <- "~/reports/Biggie/NeurobehavioralStatusExam_Text_Biggie.md"
+output_path <- "~/reports/paste0(patient)/NSE_text_", patient, ".md"
 txt <- bwu::read_write_transcript_otterai(
   input = input_path,
   output = output_path,
@@ -34,15 +34,9 @@ bwu::save_as_markdown(text = txt, output_path = output_path)
 • Concerns of parent, caregiver, teacher, or examinee (if applicable)
 • Previous diagnoses, disabilities, or medical concerns -->
 
-{{< var first_name >}} {{< var last_name >}} is a {{< var age >}}-year-old, {{< var handedness >}}right-handed research assistant with {{< var education >}} years of education, including a B.A. in Hustling from the University of biggie. {{< var he_she_cap >}} was referred in order to determine the nature and extent of neurocognitive sequelae emerging from a history of attention-deficit/hyperactivity disorder (ADHD).
+{{< var first_name >}} {{< var last_name >}} is a {{< var age >}}-year-old, {{< var handedness >}}right-handed research assistant with {{< var education >}} years of education, including a B.A. in Hustling from the University of Biggie. {{< var he_she_cap >}} was referred in order to determine the nature and extent of neurocognitive sequelae emerging from a history of attention-deficit/hyperactivity disorder (ADHD).
 
-The purpose of the current evaluation is {{< var dx1 >}}, {{< var dx2 >}}, and
-{{< var dx3 >}}. This report is based on a review of available medical records
-and information gathered across multiple days of evaluation. Treatment planning
-and plans for test accommodations were discussed with {{< var first_name >}} during the
-feedback visit on the final day of the examination.
-
-Jessica was referred by her pediatrician, Dr. Stillwell, due to problems with attention and hyperactivity. According to her mother, Jessica has problems sitting still, concentrating, and following multistep directions. According to her teacher’s report, she is often out of her seat and disrupts other children during class. Jessica was evaluated to determine whether she meets criteria for Attention-Deficit/Hyperactivity Disorder and to assist with educational planning at school.
+The purpose of the current evaluation is {{< var dx1 >}}, {{< var dx2 >}}, and {{< var dx3 >}}. This report is based on a review of available medical records and information gathered across multiple days of evaluation. Treatment planning and plans for test accommodations were discussed with {{< var first_name >}} during the feedback visit on the final day of the examination.
 
 ## Background
 
@@ -57,13 +51,8 @@ Provide pertinent information that has been obtained from all sources, including
 • Current stressors
 • Summary of past evaluations -->
 
-The following information was obtained during an interview with {{< var patient >}} and from review of available medical records.
-{{< var first_name >}} has been doing well in {{< var his_her >}} classes since starting law school and has never failed.
-However, issues have begun to arise that {{< var he_she >}} has been unable to avoid, including being easily distracted, restlessness, constantly fidgeting, procrastination, and variable attention.
-{{< var he_she_cap >}} suspects having ADHD and has always struggled with aspects of it.
-{{< var first_name >}}'s mother tried to get {{< var his_her >}} evaluated and tested when {{< var he_she >}} was younger, but was never able to do so because {{< var his_her >}} school at the time did not agree that there were major concerns.
-{{< var he_she_cap >}} has noticed increasing difficulty initiating tasks, especially when it comes to writing long research papers, and has been procrastinating more and more.
-{{< var first_name >}} has read up on ADHD and believes {{< var he_she >}} may have it, but has been able to hide it from others, as {{< var he_she >}} has "gotten good at pretending to pay attention." {{< var he_she_cap >}} seeks further assessment and evaluation to identify any underlying neurocognitive factors influencing {{< var his_her >}} academic motivations and performance.
+
+The following information was obtained during an interview with {{< var patient >}} and from review of available medical records. {{< var first_name >}} has been doing well in {{< var his_her >}} classes since starting law school and has never failed. However, issues have begun to arise that {{< var he_she >}} has been unable to avoid, including being easily distracted, restlessness, constantly fidgeting, procrastination, and variable attention. {{< var he_she_cap >}} suspects having ADHD and has always struggled with aspects of it. {{< var first_name >}}'s mother tried to get {{< var his_her >}} evaluated and tested when {{< var he_she >}} was younger, but was never able to do so because {{< var his_her >}} school at the time did not agree that there were major concerns. {{< var he_she_cap >}} has noticed increasing difficulty initiating tasks, especially when it comes to writing long research papers, and has been procrastinating more and more. {{< var first_name >}} has read up on ADHD and believes {{< var he_she >}} may have it, but has been able to hide it from others, as {{< var he_she >}} has "gotten good at pretending to pay attention." {{< var he_she_cap >}} seeks further assessment and evaluation to identify any underlying neurocognitive factors influencing {{< var his_her >}} academic motivations and performance.
 
 **Cognitive complaints**: sustained attention, working memory, and organization.
 
@@ -92,13 +81,15 @@ Patient denied having prior testing.
 
 ### Behavioral/Emotional/Social
 
-Laborum enim culpa excepteur non dolore ut consequat officia nisi proident. Ea eiusmod eiusmod officia. Ut adipisicing magna nostrud aute in enim laboris ipsum amet. Ex est occaecat irure. Aliqua ea excepteur non ea dolore culpa commodo irure ipsum non. Ea in nisi laboris id laborum laborum reprehenderit officia in ad Lorem aliqua consectetur anim. Ex pariatur eu quis tempor. Amet veniam deserunt laborum do laborum eu ex.
+Laborum enim culpa excepteur non dolore ut consequat officia nisi proident.
 
 ### Educational History
 
 Ea eiusmod eiusmod officia. Ut adipisicing magna nostrud aute in enim laboris ipsum amet. Ex est occaecat irure. Aliqua ea excepteur non ea dolore culpa commodo irure ipsum non. Ea in nisi laboris id laborum laborum reprehenderit officia in ad Lorem aliqua consectetur anim. Ex pariatur eu quis tempor. Amet veniam deserunt laborum do laborum eu ex.
 
-Magna quis excepteur aliqua do cillum est duis incididunt pariatur voluptate voluptate ullamco do. Consequat ea sit elit deserunt mollit consectetur laborum est eiusmod. Do cupidatat ad irure officia ea in nisi irure adipisicing. Sint culpa nulla do non ullamco aliquip id occaecat anim proident. Qui laboris tempor quis ullamco esse laborum deserunt. Magna proident consequat ex reprehenderit excepteur amet et est exercitation.
+### Occupational History
+
+Mollit pariatur ut laborum nulla proident aute. Eu laboris tempor consectetur id qui eu. Exercitation sint cupidatat ipsum fugiat cupidatat nulla nostrud culpa elit reprehenderit sit Lorem minim officia. Ex exercitation voluptate enim pariatur voluptate magna commodo. Aute fugiat ad deserunt sunt qui ipsum. Culpa ea proident aliquip irure veniam ut. Tempor id minim commodo.
 
 ### Cultural/Social Context
 

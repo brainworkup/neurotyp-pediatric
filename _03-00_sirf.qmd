@@ -70,7 +70,7 @@ g <-
   )
 
 # save g.csv
-readr::write_csv(g, "data/g.csv")
+readr::write_csv(g, "data/csv/g.csv")
 ```
 
 ```{r}
@@ -79,7 +79,7 @@ readr::write_csv(g, "data/g.csv")
 #| eval: true
 #| fig-cap: "Overall neurocognitive function subdomain plots of the patient's strengths and weaknesses. _Note:_ _z_-Scores have a mean of 0 and a standard deviation of 1."
 
-g <- readr::read_csv("data/g.csv")
+g <- vroom::vroom("data/csv/g.csv")
 
 # scales
 keep <- c(
@@ -119,7 +119,6 @@ data <- g
 x <- g$z
 y <- g$scale
 colors <- NULL
-# return_plot <- TRUE
 return_plot <- Sys.getenv("RETURN_PLOT")
 filename <- "fig_g.svg"
 
@@ -140,7 +139,7 @@ bwu::dotplot(
 #| fig-cap: "Broad cognitive domains"
 
 # args
-data <- readr::read_csv("neurocog.csv")
+data <- vroom::vroom("neurocog.csv")
 data2 <- dplyr::filter(data, scale != "Cognitive Proficiency")
 
 data2 <-
@@ -152,7 +151,6 @@ data2 <-
 x2 <- data2$z_mean_domain
 y2 <- data2$domain
 colors <- NULL
-# return_plot <- TRUE
 return_plot <- Sys.getenv("RETURN_PLOT")
 filename <- "fig_domains.svg"
 
@@ -169,7 +167,7 @@ bwu::dotplot(
 
 ```{=typst}
 #let domain(file_fig) = {
-  let font = (font: "Merriweather", size: 0.7em)
+  let font = (font: "Roboto Slab", size: 0.5em)
   set text(..font)
   figure(
     [#image(file_fig, width: 85%)],

@@ -5,33 +5,33 @@ patient: Biggie
 first_name: Biggie
 last_name: Smalls
 dob: 1991-01-01
-doe1: 2024-02-10
-doe2: 2024-02-10
-doe3: 2024-02-10
-sex: female
-sex_cap: Female
-he_she: she
-he_she_cap: She
-his_her: her
-his_her_cap: Her
-him_her: her
-him_her_cap: Her
-age: 18
-education: 16 years
-handedness: right
-referral: Dr. Dre
-observer: Tupac Shakur
-observer_relation: friend
-mr_mrs: Mrs.
-teacher: KRS-One
+doe1: 2024-01-01
+doe2:
+doe3:
+sex:
+sex_cap:
+age:
+education:
+handedness:
+referral:
+observer:
+observer_relation:
+attorney:
+mr_mrs:
+he_she:
+he_she_cap:
+his_her:
+his_her_cap:
+him_her:
+him_her_cap:
 dx1: attention-deficit/hyperactivity disorder (ADHD)
 dx2: anxiety
 dx3: depression
-dsm5_dx1: 
-dsm5_dx2: 
-dsm5_dx3: 
-dsm5_dx4: 
-dsm5_dx5: 
+dsm5_dx1:
+dsm5_dx2:
+dsm5_dx3:
+dsm5_dx4:
+dsm5_dx5:
 
 email:
   info: joey.trampush@brainworkup.org
