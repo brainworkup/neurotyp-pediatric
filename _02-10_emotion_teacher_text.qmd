@@ -1,0 +1,84 @@
+Based on interpretation of parent reports completed by Mrs. Gibbons,
+Felix's mother, Felix exhibits clinically significant hyperactivity,
+suggesting {{< var he_she >}} has difficulty managing behavior in structured settings. {{< var he_she_cap >}} also
+struggles with maintaining attention at home and school, potentially affecting
+{{< var his_her >}} academic performance and other functional areas of life. Occasional unusual
+or disconnected behaviors indicated by {{< var his_her >}} Atypicality score could interfere
+with {{< var his_her >}} academic engagement and social relationships, possibly signaling
+underlying cognitive processing issues and contributing to feelings of
+isolation. {{< var his_her_cap >}} Withdrawal score suggests challenges in social integration, which
+could decrease academic participation, distract from learning, and lead to
+loneliness. Significant concerns have been expressed about {{< var his_her >}} Adaptive Skills,
+particularly in Social Skills, Leadership, Activities of Daily Living, and
+Functional Communication, indicating potential struggles with social
+integration, daily functioning, and communication.
+
+To obtain information regarding Jessica’s behavior and emotional functioning in the home and at school, her mother and first-grade teacher, Shana Bellaros, completed the appropriate rating scales from the Behavior Assessment Scale for Children–Second Edition (BASC-2). On the BASC-2, which compares a student’s social, emotional, and behavioral functioning in a variety of areas to other children in the same age range, Jessica’s mother and her teacher indicated that Jessica exhibits clinically significant and at-risk levels of attention problems, respectively. Both her mother and her teacher indicated that Jessica is almost always easily distracted and has a short attention span. Ms. Bellaros reported problems with hyperactivity falling in the clinically significant range while her mother indicated that she is at-risk for concerns in these areas. Ms. Bellaros indicated that Jessica almost always has trouble staying seated. Both respondents reported problems with poor self-control and impulsivity as occurring on an often basis. In the area of adaptive functioning, Jessica’s mother and teacher indicated that she is at-risk for problems with functional communication. Her teacher reported that she is “never” able to describe her feelings accurately, and both respondents indicated that she is sometimes unclear when presenting ideas.
+
+CLINICAL AND ADAPTIVE SCALE NARRATIVES
+This report is based on PARENT:'s rating of PATIENT:'s behavior using the BASC-3 Parent Rating Scales form.
+The narrative and scale classifications in this report are based on T scores obtained using norms. Scale scores in
+the Clinically Significant range suggest a high level of maladjustment. Scores in the At-Risk range may identify a
+significant problem that may not be severe enough to require formal treatment or may identify the potential of
+developing a problem that needs careful monitoring.
+
+Externalizing Problems
+The Externalizing Problems composite scale T score is 69 with a 95% confidence interval range of 62-76 and a
+percentile rank of 95. PATIENT:'s T score on this composite scale falls in the At-Risk classification range.
+
+PATIENT:'s T score on Hyperactivity is 77 and has a percentile rank of 99. This T score falls in the Clinically Significant
+classification range and usually warrants follow-up. PATIENT:'s mother reports PATIENT: engages in many disruptive
+impulsive and uncontrolled behaviors.
+
+PATIENT:'s T score on Aggression is 58 and has a percentile rank of 85. PATIENT:'s mother reports PATIENT: tends not to act
+aggressively any more often than others of the same age.
+
+Internalizing Problems
+The Internalizing Problems composite scale T score is 55 with a 95% confidence interval range of 50-60 and a
+percentile rank of 79.
+
+PATIENT:'s T score on Anxiety is 58 and has a percentile rank of 84. PATIENT:'s mother reports PATIENT: displays anxiety-based
+behaviors no more often than others of the same age.
+
+PATIENT:'s T score on Depression is 58 and has a percentile rank of 82. PATIENT:'s mother reports PATIENT: displays depressive
+behaviors no more often than others of the same age.
+
+PATIENT:'s T score on Somatization is 47 and has a percentile rank of 45. PATIENT:'s mother reports PATIENT: complains of
+health-related problems to about the same degree as others of the same age.
+
+Behavioral Symptoms Index
+The Behavioral Symptoms Index (BSI) composite scale T score is 68 with a 95% confidence interval range of
+64-72 and a percentile rank of 95. PATIENT:'s T score on this composite scale falls in the At-Risk classification range.
+Scale summary information for Hyperactivity Aggression and Depression (scales included in the BSI) has been
+provided above. Scale summary information for the remaining BSI scales is given next.
+
+PATIENT:'s T score on Atypicality is 75 and has a percentile rank of 97. This T score falls in the Clinically Significant
+classification range and usually warrants follow-up. PATIENT:'s mother reports PATIENT: engages in behaviors that are
+considered strange or odd and PATIENT: generally seems disconnected from his surroundings.
+
+PATIENT:'s T score on Withdrawal is 44 and has a percentile rank of 29. PATIENT:'s mother reports PATIENT: does not avoid
+social situations and appears to be capable of developing and maintaining friendships with others.
+
+PATIENT:'s T score on Attention Problems is 70 and has a percentile rank of 98. This T score falls in the Clinically
+Significant classification range and usually warrants follow-up. PATIENT:'s mother reports PATIENT: has significant difficulty
+maintaining necessary levels of attention. The problems experienced by PATIENT: are probably interfering with
+academic performance and functioning in other areas.
+
+Adaptive Skills
+The Adaptive Skills composite scale T score is 42 with a 95% confidence interval range of 37-47 and a
+percentile rank of 23.
+
+PATIENT:'s T score on Adaptability is 34 and has a percentile rank of 6. This T score falls in the At-Risk classification
+range and follow-up may be necessary. PATIENT:'s mother reports PATIENT: has difficulty adapting to changing situations
+and PATIENT: takes longer to recover from difficult situations than most others of the same age.
+
+PATIENT:'s T score on Social Skills is 40 and has a percentile rank of 16. This T score falls in the At-Risk classification
+range and follow-up may be necessary. PATIENT:'s mother reports PATIENT: has difficulty complimenting others and making
+suggestions for improvement in a tactful and socially acceptable manner.
+
+PATIENT:'s T score on Activities of Daily Living is 42 and has a percentile rank of 21. PATIENT:'s mother reports PATIENT: is able
+to adequately perform simple daily tasks in a safe and efficient manner.
+
+PATIENT:'s T score on Functional Communication is 60 and has a percentile rank of 81. PATIENT:'s mother reports PATIENT:
+generally exhibits strong expressive and receptive communication skills and displays a strong ability to seek out
+and find new information independently.

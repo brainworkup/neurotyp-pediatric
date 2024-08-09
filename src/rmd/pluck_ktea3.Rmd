@@ -1,7 +1,7 @@
 ---
 title: "Pluck Tables from KTEA-3"
 params:
-  patient: "{{< var patient >}}"
+  patient: Felix
   test:
     label: "Test"
     value: ktea3
@@ -22,27 +22,32 @@ params:
     label: "No file selected"
     value: file
     input: file
-  pages: [32, 33]
+  pages: [12, 13]
   table1:
     label: "Table 1: Core Composite Score Summary"
-    value: []
+    value: ""
     input: select
     multiple: yes
     choices:
       ACADEMIC SKILLS:
-        - Academic Skills Battery (ASB)
+      - Math Concepts & Applications
+      - Letter & Word Recognition
+      - Written Expression
+      - Math Computation
+      - Spelling
+      - Reading Comprehension
       READING:
-        - Reading Composite
-        - Letter & Word Recognition
-        - Reading Comprehension
+      - Reading Composite
+      - Letter & Word Recognition
+      - Reading Comprehension
       MATH:
-        - Math Composite
-        - Math Concepts & Applications
-        - Math Computation
+      - Math Composite
+      - Math Concepts & Applications
+      - Math Computation
       WRITING:
-        - Written Language Composite
-        - Written Expression
-        - Spelling
+      - Written Language Composite
+      - Written Expression
+      - Spelling
   table2:
     label: "Table 2: Supplemental Composite Score Summary"
     value: ""
@@ -56,7 +61,7 @@ params:
       - Word Reading
       DECODING:
       - Decoding
-      - Pseudoword Decoding
+      - Pseudoword Decoding2
       - Word Reading2
       READING FLUENCY:
       - Reading Fluency
@@ -65,8 +70,8 @@ params:
       - Decoding Fluency
       PHONOLOGICAL PROCESSING:
       - Phonological Processing
-      - Pseudoword Decoding
-      - Phonemic Proficiency
+      - Pseudoword Decoding3
+      - Phonemic Proficiency2
       ORTHOGRAPHIC PROCESSING:
       - Orthographic Processing
       - Orthographic Fluency2
@@ -88,13 +93,12 @@ params:
       - Oral Expression
   colnames:
     label: "Column Names"
-    value: [scale, raw_score, ssss, score, ci_95, percentile, category, age_equiv, gsv]
+    value: [scale, raw_score, score, ci_95, percentile, category, age_equiv, grade_equiv, gsv]
     input: select
     multiple: yes
     choices:
       - scale
       - raw_score
-      - ssss
       - score
       - ci_95
       - percentile
@@ -104,7 +108,7 @@ params:
       - gsv
   keep:
     label: "Variables to Keep"
-    value: [scale, raw_score, score, percentile, ci_95, age_equiv]
+    value: [scale, raw_score, score, percentile, ci_95]
     input: select
     multiple: yes
     choices:
@@ -113,7 +117,6 @@ params:
       - score
       - percentile
       - ci_95
-      - age_equiv
 ---
 
 # KTEA-3
@@ -121,8 +124,10 @@ params:
 ## Load libraries
 
 ```{r setup, include=FALSE}
-# Sys.setenv(JAVA_HOME = "/Library/Java/JavaVirtualMachines/graalvm-community-openjdk-22.0.1+8.1/Contents/Home")
-# options(java.parameters = "-Xmx16000m")
+Sys.setenv(JAVA_HOME = "/Library/Java/JavaVirtualMachines/graalvm-community-openjdk-22.0.1+8.1/Contents/Home")
+options(java.parameters = "-Xmx16000m")
+library(knitr)
+library(xfun)
 knitr::opts_chunk$set(
   root.dir = normalizePath("./"),
   echo = FALSE,
@@ -130,22 +135,19 @@ knitr::opts_chunk$set(
   warning = FALSE,
   error = TRUE
 )
+library(DT)
 library(fs)
 library(glue)
 library(hablar)
 library(here)
-library(knitr)
 library(magrittr)
 library(miniUI)
 library(pdftools)
 library(rJava)
-library(rmarkdown)
-library(rmdformats)
 library(shiny)
-library(snakecase)
 library(tabulapdf)
+library(tibble)
 library(tidyverse)
-library(xfun)
 library(bwu)
 ```
 
@@ -159,111 +161,81 @@ test_name <- "KTEA-3"
 ## Patient initials
 
 ```{r patient}
-patient <- "Biggie"
+patient <- "Felix"
 ```
 
 ## Pages
 
 ```{r pages}
-pages <- c(32, 33)
-# pages <- params$pages
+pages <- c(12,13) # move these to yaml
 ```
 
-## File upload/attach PDF
+## Load text/csv file and save as file.path
 
-```{r}
-file <- file.path(file.choose())
-# saveRDS(file, "ktea3.rds")
-# file <- readRDS("ktea3.rds")
-# file <- file.path(params$file)
+```{r file}
+input_file_path <- file.choose()
+saveRDS(input_file_path, "ktea3.rds")
+# input_file_path <- file.path(params$file)
 ```
 
 ## UseThis - updated July 2024
 
 ```{r}
 # This works well so far
-plucked_tables_ktea3 <- tabulapdf::extract_tables(
-  file = file,
+ktea3 <- tabulapdf::extract_tables(
+  file = input_file_path,
   pages = pages,
   output = "matrix",
-  method = "stream",
   guess = TRUE
 )
-
-
-# Save the entire list to an R data file
-save(plucked_tables_ktea3, file = "plucked_tables_ktea3.RData")
-
-# Load the entire list from an R data file
-load("plucked_tables_ktea3.RData")
+table1 <- data.table::as.data.table(ktea3[[1]])
+table2 <- data.table::as.data.table(ktea3[[2]])
 ```
 
-### Function process_ktea3_tables as individual data.frames
+# Tidy Tables
+
+## Column names
 
 ```{r}
-library(dplyr)
-library(purrr)
-
-process_ktea3_tables <- function(ktea3_data) {
-  table_list <- purrr::map(ktea3_data, as_tibble) %>%
-    set_names(paste0("table", 1:length(ktea3_data))) # Rename tables
-
-  list2env(table_list, .GlobalEnv) # Assign to global environment
-}
-
-# Example Usage:
-process_ktea3_tables(plucked_tables_ktea3)
-
-# Loop over the list and write each matrix to a CSV file
-for (i in seq_along(plucked_tables_ktea3)) {
-  write.csv(plucked_tables_ktea3[[i]], file = paste0(test, "_", i, ".csv"), row.names = FALSE)
-}
-
+colnames <- c(
+  "scale",
+  "raw_score",
+  "sum_subtest",
+  "score",
+  "ci_95",
+  "percentile",
+  "category",
+  "age_equiv",
+  "gsv"
+) # todo: move this to yaml
 ```
 
-# Table 1
+## Convert to tibble and format
 
 ```{r}
 library(tibble)
 table1 <- as.tibble(table1)
-table1 <- table1 |> slice(-1:-6)
+table1 <- table1 |> slice(-1,-2)
 table1[1, 1] <- c("Academic Skills Battery (ASB) Composite")
-# names(table1) <- params$colnames
-names(table1) <- c("scale", "raw_score", "ssss", "score", "ci_95", "percentile", "category", "age_equiv", "gsv")
-df <- table1
+colnames(table1) <- colnames
+
+table1$raw_score <- as.numeric(table1$raw_score, na.rm = TRUE)
+table1$sum_subtest <- as.numeric(table1$sum_subtest, na.rm = TRUE)
+table1$score <- as.numeric(table1$score, na.rm = TRUE)
+table1$percentile <- as.numeric(table1$percentile, na.rm = TRUE)
+table1$gsv <- as.numeric(table1$gsv, na.rm = TRUE)
 ```
-
-## convert data types
-
-```{r}
-convert_columns <- function(df) {
-  # Identify numeric columns based on their class (more robust)
-  numeric_cols <- names(df)[sapply(df, is.numeric)]
-
-  # Convert numeric columns, handling NAs with na.rm = TRUE
-  df[numeric_cols] <- lapply(df[numeric_cols], as.numeric, na.rm = TRUE)
-
-  # Convert remaining columns to character
-  char_cols <- setdiff(names(df), numeric_cols)
-  df[char_cols] <- lapply(df[char_cols], as.character)
-
-  return(df)
-}
-
-# usage (assuming you have a dataframe named 'df')
-table1 <- convert_columns(df)
-```
-
-# Table 2
 
 ```{r}
 table2 <- as.tibble(table2)
-table2 <- table2 |> slice(-1:-5)
-# names(table1) <- params$colnames
-names(table2) <- c("scale", "raw_score", "ssss", "score", "ci_95", "percentile", "category", "age_equiv", "gsv")
-df <- table2
-# usage (assuming you have a dataframe named 'df')
-table2 <- convert_columns(df)
+table2 <- table2 |> slice(-1,-2)
+colnames(table2) <- colnames
+
+table2$raw_score <- as.numeric(table2$raw_score, na.rm = TRUE)
+table2$sum_subtest <- as.numeric(table2$sum_subtest, na.rm = TRUE)
+table2$score <- as.numeric(table2$score, na.rm = TRUE)
+table2$percentile <- as.numeric(table2$percentile, na.rm = TRUE)
+table2$gsv <- as.numeric(table2$gsv, na.rm = TRUE)
 ```
 
 ## Select variables to keep
@@ -275,37 +247,6 @@ table2 <- table2 |> dplyr::select(all_of(keep))
 ```
 
 # Mutate
-
-## Extract rows with data
-
-```{r}
-library(dplyr)
-
-# Function to replace "-" with NA and filter out rows with no real data
-filter_real_data <- function(table, key_columns) {
-  table <- table %>%
-    mutate(across(all_of(key_columns), ~ if_else(. == "-", NA_character_, as.character(.)))) %>%
-    mutate(across(all_of(key_columns), as.numeric)) %>%
-    filter(rowSums(is.na(select(., all_of(key_columns)))) < length(key_columns))
-
-  return(table)
-}
-
-# Assuming key_columns are those columns which must have data
-key_columns <- c("raw_score", "score", "percentile")
-
-# Extract and filter table1
-table1_all_rows <- table1
-table1 <- filter_real_data(table1_all_rows, key_columns)
-
-table2_all_rows <- table2
-table2 <- filter_real_data(table2_all_rows, key_columns)
-
-# Print the filtered table
-print(table1)
-print(table2)
-
-```
 
 ## Make columns
 
@@ -326,7 +267,9 @@ table1 <- bwu::gpluck_make_columns(
   description = "",
   result = ""
 )
+```
 
+```{r}
 table2 <- bwu::gpluck_make_columns(
   table2,
   range = "",
@@ -344,7 +287,6 @@ table2 <- bwu::gpluck_make_columns(
   result = ""
 )
 ```
-
 
 ## Test score ranges
 
@@ -481,6 +423,7 @@ table2 <-
       scale == "Letter Naming Facility" ~ "Naming Facility",
       scale == "Writing Fluency" ~ "Writing Speed",
       scale == "Math Fluency" ~ "Number Facility",
+
       scale == "Math Concepts & Applications" ~ "Mathematical Knowledge",
       scale == "Letter & Word Recognition" ~ "Reading Decoding",
       scale == "Written Expression" ~ "Writing Ability",
@@ -700,29 +643,18 @@ table2 <- table2 |> dplyr::relocate(c(test, test_name), .before = scale)
 ktea3 <- rbind(table1, table2)
 ```
 
-## Select vars for lookup table
-
-```{r}
-vars <- c("test", "test_name", "scale", "domain", "subdomain", "narrow", "pass", "verbal", "timed", "test_type", "score_type", "description")
-ktea3_lookup <- ktea3 |>
-  dplyr::select(all_of(vars))
-```
-
 ## Add patient initials
 
 ```{r}
-# ktea3$patient <- patient
+ktea3$patient <- patient
 ```
 
 ## Remove rows with no data
 
 ```{r}
-ktea3bk <- ktea3
-ktea3 <- ktea3 |>
-  dplyr::filter(!is.na(description) & description != "") |>
-  dplyr::filter(!is.na(score) & score != "") |>
-  dplyr::slice(-(2:7)) |>
-  dplyr::slice(-11, -17, -18)
+ktea3 <- ktea3 |> 
+  dplyr::filter(!is.na(description) & description != "") |> 
+  dplyr::filter(!is.na(score) & score != "")
 ```
 
 ## Write out final csv

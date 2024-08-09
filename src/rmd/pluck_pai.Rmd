@@ -25,22 +25,81 @@ knitr::opts_chunk$set(
   warning = FALSE,
   error = TRUE
 )
-library(dplyr)
+xfun::pkg_load2("pdftools", "tabulapdf", "vroom", "tidyverse", "magrittr", "rJava", "shiny")
 library(hablar)
 library(here)
-library(knitr)
-library(magrittr)
-library(miniUI)
-library(readr)
 library(rmarkdown)
 library(rmdformats)
-library(shiny)
-library(snakecase)
-library(tabulapdf)
 library(tibble)
-library(tidyr)
-library(vroom)
+library(rlang)
 library(bwu)
+```
+
+## Patient
+
+```{r patient}
+patient <- params$patient
+```
+
+## Test
+
+```{r test}
+test <- params$test
+```
+
+## Test Name
+
+```{r testname}
+test_name <- params$test_name
+```
+
+## Path
+
+It appears you're mixing up two tasks: creating a file path and reading/writing to a file.
+The `here::here()` function is fantastic for creating paths that are relative to your project directory, ensuring reproducibility across different systems.
+
+Let me break down the tasks and show you how to handle each:
+
+### 1. Creating a File Path:
+
+To create a file path using the `here::here()` function, you would do something like this:
+
+```{r}
+file_path <- here::here("pdf", "pai.pdf")
+```
+
+This creates a file path that joins your project directory, the value stored in `patient`, "pre_csv", and "pai.pdf".
+
+### 3. Reading from a File:
+
+The `readLines()` function reads text lines from a file.
+The primary argument is the file path.
+So, to read from the file we wrote to in the previous step, you'd do:
+
+```{r}
+read_content <- readLines(file_path)
+```
+
+Bringing it all together, using the two chunks you provided:
+
+```{r write}
+file_path <- here::here("pdf", "pai.pdf")
+content <- "This is some sample content." # replace with your actual content
+```
+
+```{r read}
+file_path <- here::here("pdf", "pai.pdf")
+read_content <- readLines(file_path)
+```
+
+Remember to replace the placeholder content with your actual content.
+Additionally, ensure that the `patient` object exists and has been properly defined before these chunks are executed.
+
+## Upload/attach PDF
+
+```{r file}
+# file <- file.choose()
+file <- file.path(params$file)
 ```
 
 ## Export PAI CSV file from PARiConnect
@@ -49,51 +108,30 @@ Need to export csv file from PARiConnect before processing.
 "Export Client Data" tab, then click "Univ of Southern Cali" then "PAI".
 Specify date range to exclude entire database.
 
-## Parameters
-
-```{r}
-file_path <- here::here("data", "pdf", "pai.pdf")
-read_content <- readLines(file_path)
-```
-
-```{r}
-patient <- params$patient
-test <- params$test
-test_name <- params$test_name
-# file <- file.path(file.choose())
-file <- file.path(params$file)
-saveRDS(file, "pai.rds")
-# file <- readRDS("pai.rds")
-test <- params$test
-test_name <- params$test_name
-```
-
 ## Import PAI CSV file from PARiConnect
 
-```{r}
-plucked_tables <-
+Copy over to pre_csv.
+
+```{r pluck}
+plucked_table <-
   readr::read_csv(
-    here::here("data", "pariconnectexportPAI.csv")
+    here::here("pre_csv", "pariconnectexportPAI.csv")
   )
 ```
 
-## PAI Clinical and validity scales
+## Clinical and validity scales
 
 ### Subset and rename columns
 
-```{r}
-pai <- plucked_tables |>
-  tidyr::gather() |>
-  dplyr::rename(scale = key, score = value)
-
-df_clinical <- plucked_tables |>
+```{r subset}
+df_clinical <- plucked_table |>
   dplyr::select(
     SOM_T:AGG_P_T, ALC_Est, DRG_Est
   ) |>
   tidyr::gather() |>
   dplyr::rename(scale = key, score = value)
 
-df_validity <- plucked_tables |>
+df_validity <- plucked_table |>
   dplyr::select(
     ICN_T:PIM_T,
     MAL_T:HRI_T
@@ -101,7 +139,7 @@ df_validity <- plucked_tables |>
   tidyr::gather() |>
   dplyr::rename(scale = key, score = value)
 
-df_inatt <- plucked_tables |>
+df_inatt <- plucked_table |>
   dplyr::select(IINATTN_T) |>
   tidyr::gather() |>
   dplyr::rename(scale = key, score = value)
@@ -133,7 +171,7 @@ adhd_items <- c(
   "R325"
 )
 
-df_adhd <- plucked_tables |>
+df_adhd <- plucked_table |>
   dplyr::select(adhd_items) |>
   tidyr::gather() |>
   dplyr::rename(scale = key, score = value)
@@ -141,12 +179,7 @@ df_adhd <- plucked_tables |>
 
 ### Convert T scores to z scores to percentiles
 
-```{r}
-pai <- pai |>
-  dplyr::mutate(z = (score - 50) / 10) |>
-  dplyr::mutate(percentile = trunc(pnorm(z) * 100)) |>
-  dplyr::select(scale, score, percentile)
-
+```{r t2z2p}
 df_clinical <- df_clinical |>
   dplyr::mutate(z = (score - 50) / 10) |>
   dplyr::mutate(percentile = trunc(pnorm(z) * 100)) |>
@@ -272,30 +305,6 @@ df_clinical <- df_clinical |> dplyr::slice(
 ## Add/mutate columns
 
 ```{r mutate}
-# TODO: Probably delete pai df
-pai <-
-  bwu::gpluck_make_columns(
-    data = pai,
-    raw_score = "",
-    range = "",
-    ci_95 = "",
-    test = params$test,
-    test_name = params$test_name,
-    domain = "",
-    subdomain = "",
-    narrow = "",
-    pass = "",
-    verbal = "",
-    timed = "",
-    test_type = "rating_scale",
-    score_type = "t_score",
-    absort = paste0(
-      tolower(test), "_", tolower(scale), "_", seq_len(nrow(pai))),
-    description = "",
-    result = ""
-    )
-
-
 df_clinical <-
   bwu::gpluck_make_columns(
     data = df_clinical,
@@ -385,7 +394,7 @@ df_inatt <- bwu::gpluck_make_score_ranges(
 
 ## Domains
 
-```{r}
+```{r domains}
 df_clinical <-
   df_clinical |>
   dplyr::mutate(
@@ -509,7 +518,7 @@ df_clinical <-
   )
 ```
 
-## Validity
+## testing
 
 ```{r}
 df_validity <-
@@ -540,7 +549,7 @@ df_validity <-
   )
 ```
 
-## Narrow
+## Narrow subdomains
 
 ```{r narrow}
 df_clinical <-
@@ -725,85 +734,74 @@ df_validity <-
 
 ```{r slice}
 slice_clinical <- c(1:51)
-df_clinical <- 
-  df_clinical |> 
-  dplyr::slice(slice_clinical)
+df_clinical <- df_clinical |> dplyr::slice(slice_clinical)
 ```
 
 ## Glue results
 
 ```{r result}
+patient <- params$patient
+
 df_clinical <-
   df_clinical |>
-  dplyr::mutate(result = glue::glue("{patient}'s score on {.data$scale} ({.data$description}) was {.data$range}."))
+  dplyr::mutate(result = glue::glue("{patient}'s score on {.data$scale}
+  ({.data$description}) was {.data$range}."))
 
 df_validity <-
   df_validity |>
-  dplyr::mutate(result = glue::glue("{patient}'s score on {.data$scale} ({.data$description}) was {.data$range}."))
+  dplyr::mutate(result = glue::glue("{patient}'s score on {.data$scale}
+  ({.data$description}) was {.data$range}."))
 
 df_inatt <-
   df_inatt |>
-  dplyr::mutate(result = glue::glue("{patient}'s score on {.data$scale} ({.data$description}) was {.data$range}."))
+  dplyr::mutate(result = glue::glue("{patient}'s score on {.data$scale}
+  ({.data$description}) was {.data$range}."))
 ```
 
-## Finalize and save
+# Finalize and save
 
-### relocate variables
+## relocate variables
 
-```{r}
-# df <-
-#   pai |>
-#   dplyr::relocate(c(raw_score, score, percentile, range, ci_95), .after = scale)
-
+```{r relocate}
 df <-
   df_clinical |>
-  dplyr::relocate(c(raw_score, score, percentile, range, ci_95), .after = scale)
+  dplyr::relocate(c(raw_score, score, percentile, range, ci_95), .before = test)
 
 df_validity <-
   df_validity |>
-  dplyr::relocate(c(raw_score, score, percentile, range, ci_95), .after = scale)
+  dplyr::relocate(c(raw_score, score, percentile, range, ci_95), .before = test)
 
 df_intatt <-
   df_inatt |>
-  dplyr::relocate(c(raw_score, score, percentile, range, ci_95), .after = scale)
+  dplyr::relocate(c(raw_score, score, percentile, range, ci_95), .before = test)
 ```
 
 ## Write out final csv
 
 ```{r writeout}
 readr::write_csv(
-  pai,
-  here::here("data", "pai.csv"),
-  col_names = TRUE,
-  na = ""
-)
-
-readr::write_csv(
   df_clinical,
-  here::here("data", "csv", "pai_clinical.csv"),
+  here::here("csv", "pai_clinical.csv"),
   col_names = TRUE,
   na = ""
 )
 
 readr::write_csv(
   df_validity,
-  here::here("data", "csv", "pai_validity.csv"),
+  here::here("csv", "pai_validity.csv"),
   col_names = TRUE,
   na = ""
 )
 
 readr::write_csv(
   df_inatt,
-  here::here("data", "csv", "pai_inatt.csv"),
+  here::here("csv", "pai_inatt.csv"),
   col_names = TRUE,
   na = ""
 )
 ```
 
-## Text: extract, squish, save
-
-Replace long spaces with a col break symbol.
-Save text to markdown, quarto, and typst formats.
+# Pluck Text
 
 ```{r text}
 library(pdftools)
@@ -811,7 +809,11 @@ library(stringr)
 
 # save file as path
 file <- fs::as_fs_path(params$file)
+```
 
+## Extract and save dirty text
+
+```{r text-extract}
 get_text <- function(file) {
   txt <- pdftools::pdf_text(file) |>
     stringr::str_split("\n") |>
@@ -819,6 +821,17 @@ get_text <- function(file) {
 }
 pai_text <- get_text(file)
 
+readr::write_lines(pai_text, here::here("pai_text_dirty.md"), sep = "\n")
+readr::write_lines(pai_text, here::here("pai_text_dirty.txt"), sep = "\n")
+readr::write_lines(pai_text, here::here("pai_text_dirty.typ"), sep = "\n")
+```
+
+## Squish text and save
+
+Replace long spaces with a col break symbol.
+Save text to markdown, quarto, and typst formats.
+
+```{r text-replace}
 pai_text_squished <-
   stringr::str_replace_all(pai_text, "\\s{2,}", "- ") |>
   stringr::str_remove_all(",")
