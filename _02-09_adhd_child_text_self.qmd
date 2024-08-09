@@ -1,0 +1,71 @@
+Response Style Analysis:
+- {{( include patient )}} did not show any indication of exaggerated or inconsistent responding on the Conners 4 self-report.
+- He responded to all items, with no omissions.
+
+Critical & Indicator Items:
+- {{( include patient )}} did not endorse any Severe Conduct or Self-Harm Critical Items, indicating no severe behavioral or self-harm concerns.
+- However, he endorsed the "feeling tired" item, suggesting potential sleep problems that warrant further assessment.
+
+Content Scales:
+- Inattention/Executive Dysfunction: {{( include patient )}}'s score was in the Average range, indicating no more difficulty with attention and executive functioning than typically reported by 12-year-olds.
+- Hyperactivity: {{( include patient )}}'s score was in the Low range, suggesting fewer features of hyperactivity than typically reported.
+- Impulsivity: {{( include patient )}}'s score was also in the Low range, indicating less impulsivity than is typical for his age.
+- Emotional Dysregulation: {{( include patient )}}'s score was in the Average range, with no more difficulty regulating emotions than is typical.
+- Depressed Mood and Anxious Thoughts: {{( include patient )}}'s scores on these scales were both in the Average range, suggesting no elevated symptoms of depression or anxiety.
+
+Impairment & Functional Outcome Scales:
+- Schoolwork, Peer Interactions, and Family Life: {{( include patient )}}'s scores on these scales were all in the Average range, indicating no more impairment in these domains than is typical for 12-year-olds.
+
+DSM Symptom Scales:
+- ADHD Inattentive Symptoms: {{( include patient )}}'s score was in the Average range, with a symptom count of 2 out of the 9 required for an ADHD-Inattentive diagnosis.
+- ADHD Hyperactive/Impulsive Symptoms: {{( include patient )}}'s score was in the Low range, with a symptom count of 0 out of 9.
+- Total ADHD Symptoms: {{( include patient )}}'s overall ADHD symptom score was in the Average range.
+- Oppositional Defiant Disorder Symptoms: {{( include patient )}}'s score was in the Average range, with a symptom count of 0 out of 8.
+- Conduct Disorder Symptoms: {{( include patient )}}'s score was in the Average range, with a symptom count of 0 out of 15.
+
+Conners 4-ADHD Index:
+- {{( include patient )}}'s ADHD Index Probability Score was 18%, indicating low similarity to youth with ADHD.
+
+In summary, {{( include patient )}}'s self-report on the Conners 4 did not indicate any clinically significant concerns across the assessed domains. His scores were mostly in the Average or Low range, suggesting he does not exhibit elevated symptoms of ADHD, emotional dysregulation, depression, anxiety, or functional impairment. The only potential area of concern was the endorsement of feeling tired, which may warrant further evaluation of potential sleep problems. Overall, the Conners 4 self-report results do not provide evidence to support clinical diagnoses in the areas assessed.
+
+---
+
+Overall, the results from {{( include patient )}}'s self-report on the Conners 4 do not indicate the presence of significant symptoms or impairment across the domains assessed. 
+
+Response Style Analysis:
+- {{( include patient )}} responded to all items and there was no indication of exaggerated or inconsistent responding.
+
+Critical & Indicator Items:
+- {{( include patient )}} did not endorse any of the severe conduct or self-harm critical items. However, he did endorse feeling tired, which suggests further assessment of potential sleep problems may be warranted.
+
+Content Scales:
+- {{( include patient )}}'s scores on the Inattention/Executive Dysfunction, Hyperactivity, Impulsivity, Emotional Dysregulation, Depressed Mood, and Anxious Thoughts scales were all within the average range compared to other 12-year-olds. This indicates he is not reporting significantly elevated difficulties in these areas.
+
+Impairment & Functional Outcome Scales: 
+- {{( include patient )}}'s scores on the Schoolwork, Peer Interactions, and Family Life scales were also within the average range, suggesting he is not reporting significant impairment in these domains.
+
+DSM Symptom Scales:
+- {{( include patient )}}'s scores on the DSM ADHD Inattentive, Hyperactive/Impulsive, Oppositional Defiant Disorder, and Conduct Disorder symptom scales were all within the average range. His symptom counts did not meet the DSM thresholds for these disorders.
+
+Conners 4 ADHD Index:
+- {{( include patient )}}'s ADHD Index probability score was in the low range, indicating low similarity to youth with ADHD.
+
+In summary, {{( include patient )}}'s self-report on the Conners 4 does not indicate the presence of clinically significant symptoms of ADHD, emotional/behavioral problems, or functional impairment. The results suggest he is generally functioning well across home, school, and peer domains. The only potential area of concern is the endorsement of feeling tired, which may warrant further assessment of potential sleep difficulties. Overall, these results provide a positive picture of {{( include patient )}}'s current functioning.
+
+## Sleep scales
+
+Based on the information provided in the PDF file and the additional details from the web search, here is a summary and interpretation of the patient's scores on the PROMIS sleep assessment measures:
+
+The patient, {{( include patient )}} Gibbons, a 12-year-old male, completed the Parent Proxy Sleep Disturbance – Short Form 8A and the Parent Proxy Sleep-Related Impairment – Short Form 8A. 
+
+On the Sleep Disturbance measure, {{( include patient )}} scored a raw score of 8, which corresponds to a T-score of 39. This T-score falls within the normal limits, indicating that his sleep disturbance is within the expected range for his age and gender. [^1] [^2]
+
+However, on the Sleep-Related Impairment measure, {{( include patient )}} scored a raw score of 24, which corresponds to a T-score of 68. This T-score falls in the "Severe" range, suggesting that his sleep-related impairment is significantly impacting his daily functioning and well-being. [^2] [^3]
+
+The detailed item responses indicate that {{( include patient )}} is experiencing issues with daytime sleepiness, difficulty concentrating, and problems during the day due to poor sleep. These findings warrant further clinical evaluation and potential intervention to address the sleep-related impairment and its impact on his daily life. [^4] [^5]
+
+[^1]: https://www.healthmeasures.net/images/PROMIS/manuals/PROMIS_Sleep_Disturbance_Scoring_Manual.pdf
+[^2]: https://www.healthmeasures.net/score-and-interpret/interpret-scores/promis/promis-score-cut-points
+[^3]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3261577/
+[^4]: https://www.sciencedirect.com/science/article/pii/S2352721818301700
+[^5]: https://www.frontiersin.org/journals/pain-research/articles/10.3389/fpain.2021.682072/full
