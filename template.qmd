@@ -1,6 +1,6 @@
 ---
 title: NEUROCOGNITIVE EXAMINATION
-name: {{< var first_name >}} {{< var last_name >}}
+name: Biggie {{< var last_name >}}
 doe: today
 patient: {{< var patient >}}
 ---
@@ -120,9 +120,9 @@ validity <- vroom::vroom("validity.csv")
 
 <!-- {{< include _02-08_social.qmd >}} -->
 
-{{< include _02-09_adhd_adult.qmd >}}
+{{< include _02-09_adhd_child.qmd >}}
 
-{{< include _02-10_emotion_adult.qmd >}}
+{{< include _02-10_emotion_child.qmd >}}
 
 <!-- {{< include _02-11_adaptive.qmd >}} -->
 
