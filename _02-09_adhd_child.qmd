@@ -1,3 +1,9 @@
+---
+format: 
+  typst:
+    keep_md: true
+---
+
 ## ADHD Symptoms and Executive Functioning {#sec-adhd}
 
 ```{r}
@@ -159,8 +165,8 @@ data_adhd <- bwu::filter_data(data, domain = domains, scale = scales)
 ```{r}
 #| label: text-adhd-self
 #| cache: true
-#| eval: true
 #| include: false
+#| eval: true
 
 # Self-report
 data_adhd_self <-
@@ -183,7 +189,6 @@ bwu::cat_neuropsych_results(data = data_adhd_self, file = "_02-09_adhd_child_tex
 data_adhd_parent <-
   data_adhd |>
   dplyr::filter(test == "conners4_parent" | test == "cefi_or" | test == "brown_efa_parent") |>
-  dplyr::arrange(dplyr::desc(percentile)) |>
   dplyr::distinct(.keep_all = FALSE)
 
 # Flatten the text
@@ -193,14 +198,13 @@ bwu::cat_neuropsych_results(data = data_adhd_parent, file = "_02-09_adhd_child_t
 ```{r}
 #| label: text-adhd-teacher
 #| cache: true
-#| eval: false
 #| include: false
+#| eval: false
 
 # Parent report
 data_adhd_teacher <-
   data_adhd |>
   dplyr::filter(test == "conners4_teacher" | test == "cefi_or" | test == "brown_efa_teacher") |>
-  dplyr::arrange(dplyr::desc(percentile)) |>
   dplyr::distinct(.keep_all = FALSE)
 
 # Flatten the text
@@ -211,8 +215,8 @@ bwu::cat_neuropsych_results(data = data_adhd_teacher, file = "_02-09_adhd_child_
 #| label: qtbl-adhd-self
 #| dev: tikz
 #| fig-process: pdf2png
-#| eval: true
 #| include: false
+#| eval: true
 options(tikzDefaultEngine = "xetex")
 
 # table arguments
@@ -241,25 +245,18 @@ grp_conners4 <- list(
 grp_cefi <- list(
   standard_score = c("CEFI Self-Report", "CEFI Observer-Report")
 )
-
 grp_self <- list(
-    standard_score = c("CEFI Self-Report"),
-    t_score = c("Conners 4 Self", "Brown EF/A Self")
-  )
-
-# Clean scale names
-data_adhd_self <-
-  dplyr::mutate(data_adhd_self,
-    scale = stringr::str_remove_all(
-      scale, "Conners 4 Self |CEFI Self-Report |Brown EF/A Self-Report"
-    )
-  )
+  standard_score = c("CEFI Self-Report"),
+  t_score = c("Conners 4 Self", "Brown EF/A Self")
+)
 
 # redo this bc got sorted by pct
 data_adhd_self <-
   data_adhd |>
   dplyr::filter(test == "conners4_self" | test == "cefi_sr" | test == "brown_efa_self") |>
   dplyr::distinct(.keep_all = FALSE)
+
+pheno <- "adhd_self"
 
 # make `gt` table
 bwu::tbl_gt(
@@ -276,12 +273,13 @@ bwu::tbl_gt(
 )
 ```
 
+
 ```{r}
 #| label: qtbl-adhd-parent
 #| dev: tikz
 #| fig-process: pdf2png
-#| eval: false
 #| include: false
+#| eval: false
 options(tikzDefaultEngine = "xetex")
 
 # table arguments
@@ -311,24 +309,18 @@ grp_cefi <- list(
   standard_score = c("CEFI Self-Report", "CEFI Observer-Report")
 )
 
-# Clean scale names
-data_adhd_parent <-
-  dplyr::mutate(data_adhd_parent,
-    scale = stringr::str_remove_all(
-      scale, "Conners 4 Parent |CEFI Parent-Report |Brown EF/A Parent-Report"
-    )
-  )
-
 grp_parent <- list(
   standard_score = c("CEFI Parent-Report"),
   t_score = c("Conners 4 Parent", "Brown EF/A Parent")
 )
 
 # redo this bc got sorted by pct
-data_adhd_parent <-
-  data_adhd |>
-  dplyr::filter(test == "conners4_parent" | test == "cefi_or" | test == "brown_efa_parent") |>
-  dplyr::distinct(.keep_all = FALSE)
+# data_adhd_parent <-
+#   data_adhd |>
+#   dplyr::filter(test == "conners4_parent" | test == "cefi_or" | test == "brown_efa_parent") |>
+#   dplyr::distinct(.keep_all = FALSE)
+
+pheno <- "adhd_parent"
 
 # make `gt` table
 bwu::tbl_gt(
@@ -380,14 +372,6 @@ grp_conners4 <- list(
   t_score = c("Conners 4 Self", "Conners 4 Parent", "Conners 4 Teacher")
 )
 
-# Clean scale names
-data_adhd_teacher <-
-  dplyr::mutate(data_adhd_teacher,
-    scale = stringr::str_remove_all(
-      scale, "Conners 4 Teacher |CEFI Teacher-Report |Brown EF/A Teacher-Report"
-    )
-  )
-
 grp_teacher <- list(
   standard_score = c("CEFI Teacher-Report"),
   t_score = c("Conners 4 Teacher", "Brown EF/A Teacher")
@@ -398,6 +382,8 @@ data_adhd_teacher <-
   data_adhd |>
   dplyr::filter(test == "conners4_teacher" | test == "cefi_tr" | test == "brown_efa_teacher") |>
   dplyr::distinct(.keep_all = FALSE)
+
+pheno <- "adhd_teacher"
 
 # make `gt` table
 bwu::tbl_gt(
@@ -416,16 +402,17 @@ bwu::tbl_gt(
 
 ```{r}
 #| label: fig-adhd-self
-#| eval: true
+#| #| eval: true
 #| include: false
 #| fig-height: 6
 #| out-height: 100%
 #| fig-cap: "Attention and executive functions are multidimensional concepts that contain several related processes. Both concepts require self-regulatory skills and have some common subprocesses; therefore, it is common to treat them together, or even to refer to both processes when talking about one or the other."
 
-# dotplot arguments
+# arguments
 filename <- "fig_adhd_self.svg"
 colors <- NULL
-return_plot <- Sys.getenv("RETURN_PLOT")
+return_plot <- TRUE
+# return_plot <- Sys.getenv("RETURN_PLOT")
 
 # dotplot variables to plot (x, y)
 x <- data_adhd_self$z
@@ -549,92 +536,9 @@ options(warn = 0) # Reset to default behavior
     ),
   )
 }
-```
-```{=typst}
-#let title = "ADHD Self-Report Ratings"
+
+#let title = "ADHD Self-Report"
 #let file_qtbl = "table_adhd_self.png"
 #let file_fig = "fig_adhd_self.svg"
-#domain(title: [#title], file_qtbl, file_fig)
-```
-
-### PARENT RATINGS
-
-{{< include _02-09_adhd_child_text_parent.qmd >}}
-
-```{=typst}
-#let domain(title: none, file_qtbl, file_fig) = {
-  let font = (font: "Roboto Slab", size: 0.5em)
-  set text(..font)
-  pad(top: 0.5em)[]
-  grid(
-    columns: (50%, 50%),
-    gutter: 8pt,
-    figure(
-      [#image(file_qtbl)],
-      caption: figure.caption(position: top, [#title]),
-      kind: "qtbl",
-      supplement: [Table],
-    ),
-    figure(
-      [#image(file_fig)],
-      caption: figure.caption(
-        position: bottom,
-        [
-          Parent-report of the child's ADHD symptoms and executive functioning in daily life.
-        ],
-      ),
-      placement: none,
-      kind: "image",
-      supplement: [Figure],
-      gap: 0.5em,
-    ),
-  )
-}
-```
-```{=typst}
-#let title = "ADHD Parent Ratings"
-#let file_qtbl = "table_adhd_parent.png"
-#let file_fig = "fig_adhd_parent.svg"
-#domain(title: [#title], file_qtbl, file_fig)
-```
-
-### TEACHER RATINGS
-
-{{< include _02-09_adhd_child_text_teacher.qmd >}}
-
-```{=typst}
-#let domain(title: none, file_qtbl, file_fig) = {
-  let font = (font: "Roboto Slab", size: 0.5em)
-  set text(..font)
-  pad(top: 0.5em)[]
-  grid(
-    columns: (50%, 50%),
-    gutter: 8pt,
-    figure(
-      [#image(file_qtbl)],
-      caption: figure.caption(position: top, [#title]),
-      kind: "qtbl",
-      supplement: [Table],
-    ),
-    figure(
-      [#image(file_fig)],
-      caption: figure.caption(
-        position: bottom,
-        [
-          Teacher-report of the child's ADHD symptoms and executive functioning in daily life.
-        ],
-      ),
-      placement: none,
-      kind: "image",
-      supplement: [Figure],
-      gap: 0.5em,
-    ),
-  )
-}
-```
-```{=typst}
-#let title = "ADHD Teacher Ratings"
-#let file_qtbl = "table_adhd_teacher.png"
-#let file_fig = "fig_adhd_teacher.svg"
 #domain(title: [#title], file_qtbl, file_fig)
 ```
