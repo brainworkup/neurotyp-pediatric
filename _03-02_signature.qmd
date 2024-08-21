@@ -10,11 +10,11 @@ Please contact me with any questions or concerns regarding this patient. -->
 ```{r}
 #| label: signature
 #| fig-align: left
-#| out-width: 10em
+#| out-width: 7em
 #| echo: false
 #| eval: true
 
-sig_path <- file.path("/src/img/jwt_sig.png")
+sig_path <- file.path("src/img/jwt_sig.png")
 knitr::include_graphics(sig_path)
 # knitr::include_graphics("jwt_sig.png")
 ```
