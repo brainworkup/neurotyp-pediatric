@@ -1,7 +1,7 @@
 ---
 title: "Create table and csv for RBANS"
 params:
-  patient: Felix
+  patient: Biggie
   test:
     label: "Test"
     value: rbans
@@ -91,7 +91,7 @@ saveRDS(input_file_path, "rbans.rds")
 
 ```{r}
 library(tidyverse)
-input_file_path <- "data/004004907_3_10_2024Felix G 12 yo Follow-up ADHD NLD LD eval_scores.csv"
+input_file_path <- "data/004004907_3_10_2024Biggie G 12 yo Follow-up ADHD NLD LD eval_scores.csv"
 test_name_prefix <- "RBANS Update Form A "
 output_file_path <- "data/processed_rbans_raw_data.csv"
 

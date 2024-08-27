@@ -1,7 +1,7 @@
 ---
 title: "Pluck Tables from KTEA-3"
 params:
-  patient: Felix
+  patient: Biggie
   test:
     label: "Test"
     value: ktea3
@@ -161,7 +161,7 @@ test_name <- "KTEA-3"
 ## Patient initials
 
 ```{r patient}
-patient <- "Felix"
+patient <- "Biggie"
 ```
 
 ## Pages

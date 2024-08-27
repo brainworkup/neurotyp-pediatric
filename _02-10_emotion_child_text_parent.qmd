@@ -1,18 +1,18 @@
-Felix's parent-reported maintain necessary levels of attention (parent rated) was High Average.
-Felix's parent-reported anxiety-based behaviors (parent rated) was High Average.
-Felix's parent-reported depressive behaviors (parent rated) was High Average.
-Felix's parent-reported Internalizing Problems composite scale (parent rated) was High Average.
-Felix's parent-reported socially adept and at ease (parent rated) was High Average.
-Felix's parent-reported Behavioral Symptoms Index composite scale (parent rated) was Average.
-Felix's parent-reported Externalizing Problems composite scale (parent rated) was Average.
-Felix's parent-reported acting aggressively (parent rated) was Average.
-Felix's parent-reported rule-breaking behavior (parent rated) was Average.
-Felix's parent-reported level of self-control (parent rated) was Average.
-Felix's parent-reported health-related problems (parent rated) was Average.
-Felix's parent-reported demonstration of clear, logical thought patterns and a general awareness of surroundings (parent rated) was Average.
-Felix's parent-reported avoid social situations and appears to be capable of developing and maintaining friendships with others (parent rated) was Average.
-Felix's parent-reported adaptation to most situations and able to quickly recover from situations that are difficult (parent rated) was Average.
-Felix's parent-reported Adaptive Skills composite scale (parent rated) was Low Average.
-Felix's parent-reported able to adequately perform simple daily tasks in a safe and efficient manner (parent rated) was Low Average.
-Felix's parent-reported creative, works well under pressure, and/or can effectively unite others to work together (parent rated) was Low Average.
-Felix's parent-reported exhibits appropriate expressive and receptive communication skills and displays a strong ability to seek out and find new information independently (parent rated) was Below Average.
+Biggie's parent-reported maintain necessary levels of attention (parent rated) was High Average.
+Biggie's parent-reported anxiety-based behaviors (parent rated) was High Average.
+Biggie's parent-reported depressive behaviors (parent rated) was High Average.
+Biggie's parent-reported Internalizing Problems composite scale (parent rated) was High Average.
+Biggie's parent-reported socially adept and at ease (parent rated) was High Average.
+Biggie's parent-reported Behavioral Symptoms Index composite scale (parent rated) was Average.
+Biggie's parent-reported Externalizing Problems composite scale (parent rated) was Average.
+Biggie's parent-reported acting aggressively (parent rated) was Average.
+Biggie's parent-reported rule-breaking behavior (parent rated) was Average.
+Biggie's parent-reported level of self-control (parent rated) was Average.
+Biggie's parent-reported health-related problems (parent rated) was Average.
+Biggie's parent-reported demonstration of clear, logical thought patterns and a general awareness of surroundings (parent rated) was Average.
+Biggie's parent-reported avoid social situations and appears to be capable of developing and maintaining friendships with others (parent rated) was Average.
+Biggie's parent-reported adaptation to most situations and able to quickly recover from situations that are difficult (parent rated) was Average.
+Biggie's parent-reported Adaptive Skills composite scale (parent rated) was Low Average.
+Biggie's parent-reported able to adequately perform simple daily tasks in a safe and efficient manner (parent rated) was Low Average.
+Biggie's parent-reported creative, works well under pressure, and/or can effectively unite others to work together (parent rated) was Low Average.
+Biggie's parent-reported exhibits appropriate expressive and receptive communication skills and displays a strong ability to seek out and find new information independently (parent rated) was Below Average.

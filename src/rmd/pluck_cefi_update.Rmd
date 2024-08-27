@@ -1,7 +1,7 @@
 ---
 title: "Pluck Tables from CEFI PDFs"
 params:
-  patient: biggie
+  patient: Biggie
   test:
     label: "CEFI"
     value: "cefi_or_5-18" #cefi_sr_12-18

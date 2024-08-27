@@ -4,7 +4,7 @@ title: |
   <center> Self Report </center>
 date: "`r Sys.Date()`"
 params:
-  patient: Felix
+  patient: Biggie
   test:
     label: "Conners' 4"
     value: conners4_self
@@ -81,7 +81,7 @@ pages1 <- (params$pages1)
 pages2 <- (params$pages2)
 # file <- file.path(file.choose())
 file <- file.path(params$file)
-# file <- "/Users/joey/reports/Felix/data/pdf/Felix_Gibbons_FG24_Conners4_Single-RaterReport.pdf"
+# file <- "/Users/joey/reports/Biggie/data/pdf/Biggie_Gibbons_FG24_Conners4_Single-RaterReport.pdf"
 
 if (params$test == "conners4_self") {
   saveRDS(file, "conners4_self_path.rds")
@@ -108,7 +108,7 @@ a_tbl3 <- list(
 )
 
 a_tbl4 <- list(
-    tbl4 = c(592.493, 34.425, 613.148, 573.75)
+  tbl4 = c(592.493, 34.425, 613.148, 573.75)
 )
 
 # table 2 using stream
@@ -148,10 +148,10 @@ extract_and_save_table <- function(area, i, method) {
     method = method,
     output = "matrix"
   )
-  
+
   file_name <- paste0("table", i, "_conners4_self.rds")
   saveRDS(tbl, file = file_name)
-  
+
   return(tbl)
 }
 
@@ -160,20 +160,26 @@ areas_lattice <- list(a_tbl1, a_tbl3, a_tbl4)
 method <- "decide"
 
 # Use map2 with an anonymous function to pass the method argument
-extracted_tables_lattice <- map2(areas_lattice, seq_along(areas_lattice), 
-                                 ~ extract_and_save_table(.x, .y, method))
+extracted_tables_lattice <- map2(
+  areas_lattice, seq_along(areas_lattice),
+  ~ extract_and_save_table(.x, .y, method)
+)
 
 # Alternatively, using purrr::partial
-extracted_tables_lattice2 <- map2(areas_lattice, seq_along(areas_lattice),
-                                 purrr::partial(extract_and_save_table, method = method))
+extracted_tables_lattice2 <- map2(
+  areas_lattice, seq_along(areas_lattice),
+  purrr::partial(extract_and_save_table, method = method)
+)
 
 # Define the areas and method for stream
 areas_stream <- list(a_tbl2)
 method <- "stream"
 
 # Alternatively, using purrr::partial
-extracted_tables_stream <- map2(areas_stream, seq_along(areas_stream),
-                                 purrr::partial(extract_and_save_table, method = method))
+extracted_tables_stream <- map2(
+  areas_stream, seq_along(areas_stream),
+  purrr::partial(extract_and_save_table, method = method)
+)
 
 tbl1 <- extracted_tables_lattice[[1]]
 tbl2 <- extracted_tables_stream[[1]]
@@ -197,8 +203,8 @@ df <- df %>%
     Scale_Name = str_split_fixed(V1, " \\d+", n = 2)[, 1],
     Value = str_extract(V1, "\\d+$") # Extracts the last digits as the value
   ) %>%
-  select(-V1) %>%  # Remove the original V1 column
-  select(Scale_Name, Value, everything())  # Reorder columns
+  select(-V1) %>% # Remove the original V1 column
+  select(Scale_Name, Value, everything()) # Reorder columns
 
 # Step (b): Remove "th", "nd", "rd", "st" from the Percentile (4th column)
 df$V4 <- gsub("(th|nd|rd|st)", "", df$V4)
@@ -252,8 +258,8 @@ df <- df %>%
     Scale_Name = str_split_fixed(V1, " \\d+", n = 2)[, 1],
     Value = str_extract(V1, "\\d+$") # Extracts the last digits as the value
   ) %>%
-  select(-V1) %>%  # Remove the original V1 column
-  select(Scale_Name, Value, everything())  # Reorder columns
+  select(-V1) %>% # Remove the original V1 column
+  select(Scale_Name, Value, everything()) # Reorder columns
 
 df <- df[-c(1, 3, 6, 8), ]
 df[, 7] <- c(r2, r4, NA, r7, r9)
@@ -474,7 +480,7 @@ subdomain_col <- which(colnames(table) == "subdomain")
 if (length(subdomain_col) > 0) {
   table[1:6, subdomain_col] <- c("Content Scales")
   table[7:9, subdomain_col] <- c("Impairment/Functional Outcomes")
-  table[10:14, subdomain_col] <- c("DSM Symptom Scales")  
+  table[10:14, subdomain_col] <- c("DSM Symptom Scales")
   table[15, subdomain_col] <- c("Conners 4 ADHD Index")
 } else {
   warning("Column 'subdomain' not found in the table.")
@@ -499,7 +505,7 @@ if (length(narrow_col) > 0) {
   table[11, narrow_col] <- c("Hyperactivity")
   table[12, narrow_col] <- c("Combined Symptoms")
   table[13, narrow_col] <- c("Oppositional")
-  table[14, narrow_col] <- c("Conduct")  
+  table[14, narrow_col] <- c("Conduct")
   table[15, narrow_col] <- c("ADHD Risk Index")
 } else {
   warning("Column 'narrow' not found in the table.")
@@ -582,11 +588,11 @@ table <-
   dplyr::relocate(
     c(raw_score, score, ci_95, percentile, range),
     .after = scale
-  ) |> 
+  ) |>
   dplyr::relocate(
     c(domain, subdomain, narrow, pass, verbal, timed, score_type, test_type, absort, description, result),
     .after = range
-  ) |> 
+  ) |>
   dplyr::select(-category, -difference, -significance, -symptom_count)
 
 file_path <- here::here("data", "csv", paste0(params$test, ".csv"))
