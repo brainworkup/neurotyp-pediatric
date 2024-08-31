@@ -1,5 +1,5 @@
 ---
-title: "Pluck Tables Bracken School Readiness 4th ed (BSRA-4)"
+title: "Bracken School Readiness 4th ed (BSRA-4)"
 params:
   patient: Biggie
   test: bsra4
