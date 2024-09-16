@@ -6,14 +6,14 @@ first_name: Biggie
 last_name: Smalls
 dob: 1991-01-01
 doe1: 2024-01-01
-doe2:
-doe3:
-sex:
-sex_cap:
-age:
-education:
-handedness:
-referral:
+doe2: 2024-01-01
+doe3: 2024-01-01
+sex: male
+sex_cap: Male
+age: 18
+education: 14 years
+handedness: right
+referral: Dr. Dre
 observer:
 observer_relation:
 attorney:

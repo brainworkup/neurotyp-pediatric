@@ -97,3 +97,8 @@ test_scale_descriptions.md
 gpt_neurocog_prompts.qmd
 neurotyp-pediatric.ipynb
 pediatric.code-workspace
+read_data_scales.csv
+test_scale_descriptions.md
+typst_packages.typ
+.prompts/
+R/

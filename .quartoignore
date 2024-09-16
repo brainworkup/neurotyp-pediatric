@@ -82,3 +82,8 @@ NEPSY-II_GeneralBattery.xlsx
 src/rmd/cars2_hf.xlsx
 src/rmd/cars2.xlsx
 pediatric.code-workspace
+read_data_scales.csv
+test_scale_descriptions.md
+typst_packages.typ
+.prompts/
+R/
