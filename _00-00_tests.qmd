@@ -30,9 +30,9 @@
 - Comprehensive Executive Function Inventory, Teacher Report (CEFI Teacher)
 - Comprehensive Executive Function Inventory, Youth Report (CEFI Youth)
 - Comprehensive Executive Function Inventory, Self-Report (CEFI Self)
-- Conners' Rating Scale, 4th ed, Parent (Conners 4 Parent)
-- Conners' Rating Scale, 4th ed, Teacher (Conners 4 Teacher)
-- Conners' Rating Scale, 4th ed, Self-Report (Conners 4 Self)
+- Conners' Rating Scale, 4th ed, Parent (Conners-4 Parent)
+- Conners' Rating Scale, 4th ed, Teacher (Conners-4 Teacher)
+- Conners' Rating Scale, 4th ed, Self-Report (Conners-4 Self)
 - Delis-Kaplan Executive Function System (D-KEFS)
 - Dot Counting Test (DCT)
 - Grooved Pegboard Test
@@ -53,3 +53,8 @@
 - Wechsler Intelligence Scale for Children, 5th ed (WISC-5)
 - Wechsler Preschool and Primary Scale of Intelligence, 4th ed, Ages 2-3 (WPPSI-IV)
 - Wechsler Preschool and Primary Scale of Intelligence, 4th ed, Ages 4-7 (WPPSI-IV)
+- Comprehensive Neurodevelopmental Symptom and History Interview
+- Conners' Rating Scale, 4th ed, Parent (Conners-4 Parent)
+- PROMIS Sleep Assessments Pediatric Parent Proxy
+- Rating Scale of Impairment (RSI)
+- Personality Assessment Inventory, Adolescent (PAI-A)
