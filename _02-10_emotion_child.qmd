@@ -173,17 +173,17 @@ data_emotion <-
 #| label: text-emotion-child
 #| cache: true
 #| include: false
-#| eval: false
+#| eval: true
 
 # Self-report
 data_emotion_self <-
   data_emotion |>
-  dplyr::filter(test == "basc3_srp_child" | test == "basc3_srp_adolescent" | test == "basc3_srp_college") |>
+  dplyr::filter(test == "basc3_srp_child" | test == "basc3_srp_adolescent" | test == "basc3_srp_college" | test == "pai_adolescent") |>
   dplyr::arrange(dplyr::desc(percentile)) |>
   dplyr::distinct(.keep_all = FALSE)
 
 # Flatten the text
-bwu::cat_neuropsych_results(data = data_emotion_self, file = "_02-09_emotion_child_text_self.qmd")
+bwu::cat_neuropsych_results(data = data_emotion_self, file = "_02-10_emotion_child_text_self.qmd")
 ```
 
 ```{r}
@@ -305,9 +305,9 @@ data_emotion_parent <-
   dplyr::filter(
     test == "basc3_prs_preschool" |
       test == "basc3_prs_child" |
-      test == "basc3_prs_adolescent" | 
+      test == "basc3_prs_adolescent" |
       test == "basc3_prs_college"
-    ) |>
+  ) |>
   dplyr::distinct(.keep_all = FALSE)
 
 pheno <- "emotion_parent"

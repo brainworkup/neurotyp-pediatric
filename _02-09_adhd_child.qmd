@@ -121,24 +121,24 @@ scales <- c(
   "CEFI-OR Self-Monitoring",
   "CEFI-OR Working Memory",
   # Conners 4
-  "Conners 4 Parent Inattention/Executive Dysfunction",
-  "Conners 4 Parent Hyperactivity",
-  "Conners 4 Parent Impulsivity",
-  "Conners 4 Parent Emotional Dysregulation",
-  "Conners 4 Parent Negative Self-Concept",
-  "Conners 4 Parent ADHD Inattentive Symptoms",
-  "Conners 4 Parent ADHD Hyperactive/Impulsive Symptoms",
-  "Conners 4 Parent Total ADHD Symptoms",
-  "Conners 4 Parent ADHD Index",
-  "Conners 4 Self Inattention/Executive Dysfunction",
-  "Conners 4 Self Hyperactivity",
-  "Conners 4 Self Impulsivity",
-  "Conners 4 Self Emotional Dysregulation",
-  "Conners 4 Self Negative Self-Concept",
-  "Conners 4 Self ADHD Inattentive Symptoms",
-  "Conners 4 Self ADHD Hyperactive/Impulsive Symptoms",
-  "Conners 4 Self Total ADHD Symptoms",
-  "Conners 4 Self ADHD Index",
+  "Conners-4 Parent Inattention/Executive Dysfunction",
+  "Conners-4 Parent Hyperactivity",
+  "Conners-4 Parent Impulsivity",
+  "Conners-4 Parent Emotional Dysregulation",
+  "Conners-4 Parent Negative Self-Concept",
+  "Conners-4 Parent ADHD Inattentive Symptoms",
+  "Conners-4 Parent ADHD Hyperactive/Impulsive Symptoms",
+  "Conners-4 Parent Total ADHD Symptoms",
+  "Conners-4 Parent ADHD Index",
+  "Conners-4 Self Inattention/Executive Dysfunction",
+  "Conners-4 Self Hyperactivity",
+  "Conners-4 Self Impulsivity",
+  "Conners-4 Self Emotional Dysregulation",
+  "Conners-4 Self Negative Self-Concept",
+  "Conners-4 Self ADHD Inattentive Symptoms",
+  "Conners-4 Self ADHD Hyperactive/Impulsive Symptoms",
+  "Conners-4 Self Total ADHD Symptoms",
+  "Conners-4 Self ADHD Index",
   "Inattention/Executive Dysfunction",
   "Hyperactivity",
   "Impulsivity",
@@ -166,7 +166,7 @@ data_adhd <- bwu::filter_data(data, domain = domains, scale = scales)
 #| label: text-adhd-self
 #| cache: true
 #| include: false
-#| eval: true
+#| eval: false
 
 # Self-report
 data_adhd_self <-
@@ -183,7 +183,7 @@ bwu::cat_neuropsych_results(data = data_adhd_self, file = "_02-09_adhd_child_tex
 #| label: text-adhd-parent
 #| cache: true
 #| include: false
-#| eval: false
+#| eval: true
 
 # Parent report
 data_adhd_parent <-
@@ -216,7 +216,7 @@ bwu::cat_neuropsych_results(data = data_adhd_teacher, file = "_02-09_adhd_child_
 #| dev: tikz
 #| fig-process: pdf2png
 #| include: false
-#| eval: true
+#| eval: false
 options(tikzDefaultEngine = "xetex")
 
 # table arguments
@@ -237,17 +237,17 @@ Higher scores reflect reduced functioning.")
 # groupings
 grp_adhd <- list(
   standard_score = c("CEFI Self-Report", "CEFI Observer-Report"),
-  t_score = c("Conners 4 Self", "Conners 4 Parent", "Conners 4 Teacher")
+  t_score = c("Conners-4 Self", "Conners-4 Parent", "Conners-4 Teacher")
 )
 grp_conners4 <- list(
-  t_score = c("Conners 4 Self", "Conners 4 Parent", "Conners 4 Teacher")
+  t_score = c("Conners-4 Self", "Conners-4 Parent", "Conners-4 Teacher")
 )
 grp_cefi <- list(
   standard_score = c("CEFI Self-Report", "CEFI Observer-Report")
 )
 grp_self <- list(
   standard_score = c("CEFI Self-Report"),
-  t_score = c("Conners 4 Self", "Brown EF/A Self")
+  t_score = c("Conners-4 Self", "Brown EF/A Self")
 )
 
 # redo this bc got sorted by pct
@@ -279,7 +279,7 @@ bwu::tbl_gt(
 #| dev: tikz
 #| fig-process: pdf2png
 #| include: false
-#| eval: false
+#| eval: true
 options(tikzDefaultEngine = "xetex")
 
 # table arguments
@@ -300,10 +300,10 @@ Higher scores reflect reduced functioning.")
 # groupings
 grp_adhd <- list(
   standard_score = c("CEFI Self-Report", "CEFI Observer-Report"),
-  t_score = c("Conners 4 Self", "Conners 4 Parent", "Conners 4 Teacher")
+  t_score = c("Conners-4 Self", "Conners-4 Parent", "Conners-4 Teacher")
 )
 grp_conners4 <- list(
-  t_score = c("Conners 4 Self", "Conners 4 Parent", "Conners 4 Teacher")
+  t_score = c("Conners-4 Self", "Conners-4 Parent", "Conners-4 Teacher")
 )
 grp_cefi <- list(
   standard_score = c("CEFI Self-Report", "CEFI Observer-Report")
@@ -311,7 +311,7 @@ grp_cefi <- list(
 
 grp_parent <- list(
   standard_score = c("CEFI Parent-Report"),
-  t_score = c("Conners 4 Parent", "Brown EF/A Parent")
+  t_score = c("Conners-4 Parent", "Brown EF/A Parent")
 )
 
 # redo this bc got sorted by pct
@@ -363,18 +363,18 @@ Higher scores reflect reduced functioning.")
 # groupings
 grp_adhd <- list(
   standard_score = c("CEFI Self-Report", "CEFI Observer-Report"),
-  t_score = c("Conners 4 Self", "Conners 4 Parent", "Conners 4 Teacher")
+  t_score = c("Conners-4 Self", "Conners-4 Parent", "Conners-4 Teacher")
 )
 grp_cefi <- list(
   standard_score = c("CEFI Self-Report", "CEFI Observer-Report")
 )
 grp_conners4 <- list(
-  t_score = c("Conners 4 Self", "Conners 4 Parent", "Conners 4 Teacher")
+  t_score = c("Conners-4 Self", "Conners-4 Parent", "Conners-4 Teacher")
 )
 
 grp_teacher <- list(
   standard_score = c("CEFI Teacher-Report"),
-  t_score = c("Conners 4 Teacher", "Brown EF/A Teacher")
+  t_score = c("Conners-4 Teacher", "Brown EF/A Teacher")
 )
 
 # redo this bc got sorted by pct
@@ -402,7 +402,7 @@ bwu::tbl_gt(
 
 ```{r}
 #| label: fig-adhd-self
-#| #| eval: true
+#| eval: false
 #| include: false
 #| fig-height: 6
 #| out-height: 100%
@@ -437,7 +437,7 @@ options(warn = 0) # Reset to default behavior
 
 ```{r}
 #| label: fig-adhd-parent
-#| eval: false
+#| eval: true
 #| include: false
 #| fig-height: 6
 #| out-height: 100%
@@ -446,7 +446,7 @@ options(warn = 0) # Reset to default behavior
 # dotplot arguments
 filename <- "fig_adhd_parent.svg"
 colors <- NULL
-return_plot <- Sys.getenv("RETURN_PLOT")
+return_plot <- TRUE
 
 # dotplot variables to plot (x, y)
 x <- data_adhd_parent$z
@@ -531,7 +531,7 @@ options(warn = 0) # Reset to default behavior
       ),
       placement: none,
       kind: "image",
-      supplement: [*Fig.*],
+      supplement: [*Figure*],
       gap: 0.5em,
     ),
   )
@@ -540,5 +540,85 @@ options(warn = 0) # Reset to default behavior
 #let title = "ADHD Self-Report"
 #let file_qtbl = "table_adhd_self.png"
 #let file_fig = "fig_adhd_self.svg"
+#domain(title: [#title], file_qtbl, file_fig)
+```
+
+### PARENT REPORT
+
+{{< include _02-09_adhd_child_text_self.qmd >}}
+
+```{=typst}
+#let domain(title: none, file_qtbl, file_fig) = {
+  let font = (font: "Roboto Slab", size: 0.5em)
+  set text(..font)
+  pad(top: 0.5em)[]
+  grid(
+    columns: (50%, 50%),
+    gutter: 8pt,
+    figure(
+      [#image(file_qtbl)],
+      caption: figure.caption(position: top, [#title]),
+      kind: "qtbl",
+      supplement: [*Table*],
+    ),
+    figure(
+      [#image(file_fig)],
+      caption: figure.caption(
+        position: bottom,
+        [
+        Attention and executive functions are multidimensional concepts that contain several related processes. Both concepts require self-regulatory skills and have some common subprocesses; therefore, it is common to treat them together, or even to refer to both processes when talking about one or the other.
+          ],
+      ),
+      placement: none,
+      kind: "image",
+      supplement: [*Figure*],
+      gap: 0.5em,
+    ),
+  )
+}
+
+#let title = "ADHD Parent Report"
+#let file_qtbl = "table_adhd_parent.png"
+#let file_fig = "fig_adhd_parent.svg"
+#domain(title: [#title], file_qtbl, file_fig)
+```
+
+### TEACHER REPORT
+
+{{< include _02-09_adhd_child_text_teacher.qmd >}}
+
+```{=typst}
+#let domain(title: none, file_qtbl, file_fig) = {
+  let font = (font: "Roboto Slab", size: 0.5em)
+  set text(..font)
+  pad(top: 0.5em)[]
+  grid(
+    columns: (50%, 50%),
+    gutter: 8pt,
+    figure(
+      [#image(file_qtbl)],
+      caption: figure.caption(position: top, [#title]),
+      kind: "qtbl",
+      supplement: [*Table*],
+    ),
+    figure(
+      [#image(file_fig)],
+      caption: figure.caption(
+        position: bottom,
+        [
+        Attention and executive functions are multidimensional concepts that contain several related processes. Both concepts require self-regulatory skills and have some common subprocesses; therefore, it is common to treat them together, or even to refer to both processes when talking about one or the other.
+          ],
+      ),
+      placement: none,
+      kind: "image",
+      supplement: [*Figure*],
+      gap: 0.5em,
+    ),
+  )
+}
+
+#let title = "ADHD Teacher Report"
+#let file_qtbl = "table_adhd_teacher.png"
+#let file_fig = "fig_adhd_teacher.svg"
 #domain(title: [#title], file_qtbl, file_fig)
 ```
