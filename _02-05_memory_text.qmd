@@ -1,3 +1,11 @@
+<<PROMPT>>
+
+## Area: Memory
+
+Summarize and interpret these neuropsychological test scores related to the area denoted above. For scores that are Below { range } to Exceptionally Low, give a brief example of how this could impact the patient's daily functioning. Organize your summary and interpretation in order from scores that are Exceptionally High/Above { range } to Exceptionally Low/Below { range } to delineate relative strengths and weaknesses, respectively. Finally, recommended additional support that the patient should receive in areas in which scores fall Below { range } to Exceptionally Low, or scores that are significantly discrepant and lower than expected relative to other scores (e.g., verbal reasoning versus nonverbal reasoning).
+
+<<EXAMPLE>>
+
 {{< var patient >}} demonstrated a range of performance across different memory tasks.
 
 ### Learning vs. Recall
@@ -14,12 +22,10 @@
 
 ### Visual Memory
 
-- **Figure Recall**: { range } performance in spontaneously recalling and
-reproducing a complex abstract figure after a long-term delay, suggesting
-difficulties with visual memory retention secondary to
-deficits in the initial planning and organization of the material.
+- **Figure Recall**: { range } performance in spontaneously recalling and reproducing a complex abstract figure after a long-term delay, suggesting difficulties with visual memory retention secondary to deficits in the initial planning and organization of the material.
 
 - **Immediate Recognition**: { range } capabilities in learning and recognizing abstract shapes immediately.
 
 - **Delayed Recognition**: { range } abilities in recognizing target visual material among distractors after a delay.
 
+<<END>>

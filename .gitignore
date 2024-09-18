@@ -102,3 +102,4 @@ test_scale_descriptions.md
 typst_packages.typ
 .prompts/
 R/
+.quartoignore

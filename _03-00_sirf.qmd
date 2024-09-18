@@ -3,7 +3,7 @@
 ```{r}
 #| label: make-g
 #| include: false
-#| eval: true
+#| eval: false
 
 scales <- c(
   "Academic Skills",

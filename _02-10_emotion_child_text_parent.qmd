@@ -1,18 +1,11 @@
-Biggie's parent-reported maintain necessary levels of attention (parent rated) was High Average.
-Biggie's parent-reported anxiety-based behaviors (parent rated) was High Average.
-Biggie's parent-reported depressive behaviors (parent rated) was High Average.
-Biggie's parent-reported Internalizing Problems composite scale (parent rated) was High Average.
-Biggie's parent-reported socially adept and at ease (parent rated) was High Average.
-Biggie's parent-reported Behavioral Symptoms Index composite scale (parent rated) was Average.
-Biggie's parent-reported Externalizing Problems composite scale (parent rated) was Average.
-Biggie's parent-reported acting aggressively (parent rated) was Average.
-Biggie's parent-reported rule-breaking behavior (parent rated) was Average.
-Biggie's parent-reported level of self-control (parent rated) was Average.
-Biggie's parent-reported health-related problems (parent rated) was Average.
-Biggie's parent-reported demonstration of clear, logical thought patterns and a general awareness of surroundings (parent rated) was Average.
-Biggie's parent-reported avoid social situations and appears to be capable of developing and maintaining friendships with others (parent rated) was Average.
-Biggie's parent-reported adaptation to most situations and able to quickly recover from situations that are difficult (parent rated) was Average.
-Biggie's parent-reported Adaptive Skills composite scale (parent rated) was Low Average.
-Biggie's parent-reported able to adequately perform simple daily tasks in a safe and efficient manner (parent rated) was Low Average.
-Biggie's parent-reported creative, works well under pressure, and/or can effectively unite others to work together (parent rated) was Low Average.
-Biggie's parent-reported exhibits appropriate expressive and receptive communication skills and displays a strong ability to seek out and find new information independently (parent rated) was Below Average.
+<<PROMPT>>
+
+## Area: Behavioral/Emotional/Social (parent report)
+
+Summarize and interpret these neuropsychological test scores related to the area denoted above. For scores that are Below { range }, give a brief example of how this could impact the patient's daily functioning. Organize your summary and interpretation in order from scores that are Exceptionally High/Above { range } to Exceptionally Low/Below { range } to delineate relative strengths and weaknesses, respectively. Finally, recommended additional support that the patient should receive in areas in which scores fall Below { range } to Exceptionally Low.
+
+<<EXAMPLE>>
+
+Biggie's parent-reported assessments show a mix of High Average and Average scores in various aspects of emotional and behavioral well-being. High Average scores include attention, anxiety-based and depressive behaviors, social adeptness, and internalizing problems. Average scores include behavioral symptoms, externalizing problems, aggression, rule-breaking, self-control, health-related problems, logical thought patterns, social avoidance, and adaptation to situations. Low Average scores are seen in adaptive skills, daily task performance, creativity under pressure, and communication skills. The Below Average score is in expressive and receptive communication skills and independent information-seeking abilities.
+
+<<END>>
