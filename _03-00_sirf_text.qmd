@@ -6,7 +6,6 @@ In conclusion, the cognitive profile is ...
 
 ### Diagnostic Impression
 
-- 314.01 (F90.2) Attention-Deficit/Hyperactivity Disorder (ADHD), Combined Presentation
 - {{< var dsm5_dx1 >}}
 - {{< var dsm5_dx2 >}}
 - {{< var dsm5_dx3 >}}

@@ -2,7 +2,7 @@
 title: NEUROCOGNITIVE EXAMINATION
 name: {{< var first_name >}} {{< var last_name >}}
 doe: today
-patient: {{< var patient >}}
+patient: Biggie
 ---
 
 ```{r}
@@ -94,7 +94,7 @@ validity <- vroom::vroom("validity.csv")
 
 {{< include _00-00_tests.qmd >}}
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
 {{< include _01-00_nse.qmd >}}
 
