@@ -181,7 +181,7 @@ y <- data_spatial$subdomain
 
 # plot args
 colors <- NULL
-return_plot <- Sys.getenv("RETURN_PLOT")
+return_plot <- TRUE
 
 # Make dotplot
 bwu::dotplot(
@@ -209,13 +209,7 @@ bwu::dotplot(
           supplement: [Table],
           ),
         figure([#image(file_fig)],
-          caption: figure.caption(position: bottom, [
-            Perception, construction, and visuospatial processing refer to
-            abilities such as mentally visualizing how objects should look from
-            different angles, visualizing how to put objects together so that
-            they fit correctly, and being able to accurately and efficiently
-            copy and/or reproduce visual-spatial information onto paper.
-            ]),
+          caption: figure.caption(position: bottom, [Perception, construction, and visuospatial processing refer to abilities such as mentally visualizing how objects should look from different angles, visualizing how to put objects together so that they fit correctly, and being able to accurately and efficiently copy and/or reproduce visual-spatial information onto paper.]),
           placement: none,
           kind: "image",
           supplement: [Figure],
