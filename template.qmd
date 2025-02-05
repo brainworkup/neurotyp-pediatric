@@ -1,7 +1,7 @@
 ---
 title: NEUROCOGNITIVE EXAMINATION
 patient: Biggie
-name: Biggie Smalls
+name: Smalls, Biggie
 doe: {{< var doe >}}
 date_of_report: {{< var date_of_report >}}
 ---
