@@ -1,6 +1,8 @@
 # TESTS ADMINISTERED {#sec-tests}
 
 - Comprehensive Neurodevelopmental Symptom and History Interview
+- Behavioral Assessment System for Children, 3rd ed, Structured Developmental History (BASC-3 SDH)
+- KSADS
 - Adaptive Behavior Assessment System, 3rd ed, Parent Form (ABAS-3 Parent)
 - Adaptive Behavior Assessment System, 3rd ed, Parent/Primary Caregiver Form (ABAS-3 Parent)
 - Adaptive Behavior Assessment System, 3rd ed, Self-Report Form (ABAS-3 Self)
@@ -10,7 +12,6 @@
 - Behavioral Assessment System for Children, 3rd ed, Parent Rating Scales, Preschool (BASC-3 PRS Preschool)
 - Behavioral Assessment System for Children, 3rd ed, Self-Report of Personality, Adolescent (BASC-3 SRP Adolescent)
 - Behavioral Assessment System for Children, 3rd ed, Self-Report of Personality, Child (BASC-3 SRP Child)
-- Behavioral Assessment System for Children, 3rd ed, Structured Developmental History (BASC-3 SDH)
 - Behavioral Assessment System for Children, 3rd ed, Teacher Rating Scales, Adolescent (BASC-3 TRS Adolescent)
 - Behavioral Assessment System for Children, 3rd ed, Teacher Rating Scales, Child (BASC-3 TRS Child)
 - Behavioral Assessment System for Children, 3rd ed, Teacher Rating Scales, Preschool (BASC-3 TRS Preschool)
@@ -40,8 +41,6 @@
 - Kaufman Test of Educational Achievement, 3rd ed, Form A (KTEA-3 Form A)
 - Kaufman Test of Educational Achievement, 3rd ed, Form B (KTEA-3 Form B)
 - NEPSY-II Developmental Neuropsychological Battery
-- NIH Executive Abilities--Measures and Instruments for Neurobehavioral Evaluation and Research (NIH EXAMINER): Unstructured Task, Behavioral Rating Scale
-- Personality Assessment Inventory, Adolescent (PAI-A)
 - PROMIS Sleep Assessments Pediatric Parent Proxy
 - Rating Scale of Impairment (RSI)
 - Repeatable Battery for the Assessment of Neuropsychological Status, Form A (RBANS)
@@ -51,7 +50,16 @@
 - Rey-Osterrieth Complex Figure Test (ROCFT)
 - Trail Making Test (TMT)
 - Wechsler Abbreviated Scale of Intelligence, 2nd ed (WASI-2)
-- Wechsler Individual Achievement Test, 4th ed (WIAT-4): Word Reading, Reading Comprehension, Pseudoword Decoding, Orthographic Fluency, Decoding Fluency
+- Wechsler Individual Achievement Test, 4th ed (WIAT-4)
+- Wechsler Individual Achievement Test, 4th ed (WIAT-4): Word Reading, Reading Comprehension, Pseudoword Decoding, Orthographic Fluency, Decoding Fluency 
 - Wechsler Intelligence Scale for Children, 5th ed (WISC-V)
 - Wechsler Preschool and Primary Scale of Intelligence, 4th ed, Ages 2-3 (WPPSI-IV)
 - Wechsler Preschool and Primary Scale of Intelligence, 4th ed, Ages 4-7 (WPPSI-IV)
+- Personality Assessment Inventory, Adolescent (PAI-A)
+- Wide Range Achievement Test, 5th ed (WRAT-5)
+- Wide Range Achievement Test, 5th ed, Blue Form (WRAT-5): Word Reading
+- Wide Range Achievement Test, 5th ed, Green Form (WRAT-5): Word Reading
+- NIH Executive Abilities--Measures and Instruments for Neurobehavioral Evaluation and Research (NIH EXAMINER):
+  - Behavioral Rating Scale
+  - Word Fluency
+  - Unstructured Task
