@@ -1,0 +1,24 @@
+Here are increasingly concise, entity-dense summaries of the NSE transcript:
+
+[
+  {
+    "Missing_Entities": ["Public/Private", "executive functioning", "night terrors"],
+    "Denser_Summary": "Biggie, 13yo 7th grader, recently transferred to more rigorous Public/Private school. Struggles with executive functioning - organization, planning, expressing himself. History of night terrors. Excels in sports, but academic performance inconsistent despite effort. Considering high school options, including Private."
+  },
+  {
+    "Missing_Entities": ["handwriting issues", "vision therapy", "concussion"],
+    "Denser_Summary": "Biggie, 13yo, transferred to Public/Private due to academic rigor. Struggles with executive function, organization, and expressing himself, despite effort. History of handwriting issues, vision therapy, and concussion. Excels in sports. Considering high school options like Private to find best fit."
+  },
+  {
+    "Missing_Entities": ["504 plan", "Public High School", "Private High School"],
+    "Denser_Summary": "Biggie, 13yo, struggles with executive function, organization, and expression despite effort. History of handwriting, vision, and concussion issues. Received 504 plan. Considering Private High or Public High for high school to find best fit."
+  },
+  {
+    "Missing_Entities": ["Alice in Wonderland syndrome"],
+    "Denser_Summary": "Biggie, 13yo, struggles with executive function, organization, and expression despite effort. History of handwriting, vision, concussion, 504 plan, and Alice in Wonderland syndrome. Considering Private or Public High for high school."
+  },
+  {
+    "Missing_Entities": [],
+    "Denser_Summary": "Biggie, 13yo, struggles with executive function, organization, and expression despite effort. History of handwriting, vision, concussion, 504 plan, Alice in Wonderland syndrome. Considering Private or Public High for high school to find best fit."
+  }
+]

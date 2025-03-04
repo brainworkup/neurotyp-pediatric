@@ -2,7 +2,7 @@
 
 - Comprehensive Neurodevelopmental Symptom and History Interview
 - Behavioral Assessment System for Children, 3rd ed, Structured Developmental History (BASC-3 SDH)
-- KSADS
+- K-SADS
 - Adaptive Behavior Assessment System, 3rd ed, Parent Form (ABAS-3 Parent)
 - Adaptive Behavior Assessment System, 3rd ed, Parent/Primary Caregiver Form (ABAS-3 Parent)
 - Adaptive Behavior Assessment System, 3rd ed, Self-Report Form (ABAS-3 Self)
@@ -31,12 +31,10 @@
 - Comprehensive Executive Function Inventory, Self-Report (CEFI Self)
 - Comprehensive Executive Function Inventory, Teacher Report (CEFI Teacher)
 - Comprehensive Executive Function Inventory, Youth Report (CEFI Youth)
-- Comprehensive Neurodevelopmental Symptom and History Interview
 - Conners' Rating Scale, 4th ed, Parent (Conners-4 Parent)
 - Conners' Rating Scale, 4th ed, Self-Report (Conners-4 Self)
 - Conners' Rating Scale, 4th ed, Teacher (Conners-4 Teacher)
 - Delis-Kaplan Executive Function System (D-KEFS)
-- Dot Counting Test (DCT)
 - Grooved Pegboard Test
 - Kaufman Test of Educational Achievement, 3rd ed, Form A (KTEA-3 Form A)
 - Kaufman Test of Educational Achievement, 3rd ed, Form B (KTEA-3 Form B)
@@ -48,6 +46,7 @@
 - Repeatable Battery for the Assessment of Neuropsychological Status, Form C (RBANS)
 - Repeatable Battery for the Assessment of Neuropsychological Status, Form D (RBANS)
 - Rey-Osterrieth Complex Figure Test (ROCFT)
+- Test of Memory Malingering (TOMM)
 - Trail Making Test (TMT)
 - Wechsler Abbreviated Scale of Intelligence, 2nd ed (WASI-2)
 - Wechsler Individual Achievement Test, 4th ed (WIAT-4)
