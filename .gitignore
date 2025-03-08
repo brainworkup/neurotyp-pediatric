@@ -32,7 +32,7 @@ Thumbs.db
 *~
 
 # main
-_extensions/
+# _extensions/
 .history/
 .vscode/
 .prompts/

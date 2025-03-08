@@ -71,13 +71,11 @@ readr::write_excel_csv(executive, paste0(pheno, ".csv"), na = "", col_names = TR
 #| label: data-executive
 #| include: false
 
-# read and filter data
-data <- executive
-
 scales <- c(
   "Animal Coding",
   "Arithmetic",
   "Attention Domain",
+  "Attention Index (ATT)",
   "Attention Index",
   "Auditory Working Memory (AWMI)",
   "Bug Search",
@@ -108,8 +106,9 @@ scales <- c(
   "Digits Forward",
   "Dots",
   "Driving Scenes",
-  "Spatial Addition",
   "Executive Functions Domain",
+  "Executive Index",
+  "Executive Functions Index (EXE)",
   "Judgment",
   "Letter Fluency",
   "Letter-Number Sequencing",
@@ -122,6 +121,7 @@ scales <- c(
   "Mazes",
   "NAB Attention Index",
   "NAB Executive Functions Index",
+  "Executive Functions Index (EXE)",
   "Numbers & Letters Part A Efficiency",
   "Numbers & Letters Part A Errors",
   "Numbers & Letters Part A Speed",
@@ -129,15 +129,22 @@ scales <- c(
   "Numbers & Letters Part C Efficiency",
   "Numbers & Letters Part D Disruption",
   "Numbers & Letters Part D Efficiency",
+  "Orientation to Place",
+  "Orientation to Self",
+  "Orientation to Situation",
+  "Orientation to Time",
   "Orientation",
   "Picture Memory",
   "Picture Span",
   "Processing Speed (PSI)",
   "Processing Speed",
   "Psychomotor Speed",
+  "RBANS Coding",
+  "RBANS Digit Span",
   "ROCFT Copy",
   "Sentence Repetition",
   "Similarities",
+  "Spatial Addition",
   "Spatial Span",
   "Statue-Body Movement",
   "Statue-Eye Opening",
@@ -154,14 +161,33 @@ scales <- c(
   "Working Memory (WMI)",
   "Working Memory",
   "Zoo Locations",
-  "RBANS Digit Span",
-  "RBANS Coding"
+  ## Daily Living
+  # "Driving Scenes",
+  # "Judgment",
+  # "Bill Payment",
+  # "Map Reading",
+  # "Daily Living Memory Immediate Recall",
+  # "Daily Living Memory Delayed Recall",
+  # other
+  "Writing Legibility",
+  "Writing Spelling",
+  "Writing Syntax",
+  "Writing Conveyance",
+  "List Learning Semantic Clusters",
+  "List Learning Perseverations",
+  "List Learning Intrusions",
+  "Figure Drawing Copy Organization",
+  "Figure Drawing Copy Fragmentation",
+  "Figure Drawing Copy Planning",
+  "Figure Drawing Immediate Recall Organization",
+  "Figure Drawing Immediate Recall Fragmentation",
+  "Figure Drawing Immediate Recall Planning"
 )
 
 # Filter the data using the filter_data function from the bwu library
 # The domain is specified by the 'domains' variable
 # The scale is specified by the 'scales' variable
-data_executive <- bwu::filter_data(data, domain = domains, scale = scales)
+data_executive <- bwu::filter_data(data = executive, domain = domains, scale = scales)
 ```
 
 ```{r}
@@ -183,10 +209,10 @@ bwu::cat_neuropsych_results(data = data_executive, file = "_02-06_executive_text
 options(tikzDefaultEngine = "xetex")
 
 # more filtering for exe tables
-data_executive <-
+data_executive_tbl <-
   data_executive |>
-  dplyr::filter(test_name != "CVLT-3 Brief") |>
-  dplyr::filter(scale != "Orientation") |>
+  # dplyr::filter(test_name != "CVLT-3 Brief") |>
+  # dplyr::filter(scale != "Orientation") |>
   dplyr::filter(scale %in% c(
     "Animal Coding",
     "Arithmetic",
@@ -215,34 +241,25 @@ data_executive <-
     "Digit Span Forward",
     "Digit Span Sequencing",
     "Digit Span",
-    "Digits Backward Longest Span",
-    "Digits Backward",
-    "Digits Forward Longest Span",
-    "Digits Forward",
     "Dots",
     "Driving Scenes",
     "Spatial Addition",
     "Executive Functions Domain",
+    "Executive Functions Index (EXE)",
     "Judgment",
     "Letter Fluency",
     "Letter-Number Sequencing",
     "List Memory Intrusions",
     "List Memory Repetitions",
-    "Longest Digit Span Backward",
-    "Longest Digit Span Forward",
-    "Longest Digit Span Sequence",
+    # "Longest Digit Span Forward",
+    # "Longest Digit Span Backward",
+    # "Longest Digit Span Sequence",
     "Longest Letter-Number Sequence",
     "Mazes",
     "NAB Attention Index",
     "NAB Executive Functions Index",
-    "Numbers & Letters Part A Efficiency",
-    # "Numbers & Letters Part A Errors",
-    # "Numbers & Letters Part A Speed",
-    "Numbers & Letters Part B Efficiency",
-    "Numbers & Letters Part C Efficiency",
-    "Numbers & Letters Part D Disruption",
-    "Numbers & Letters Part D Efficiency",
-    "Orientation",
+    "NAB Executive Index",
+    "Executive Index",
     "Picture Memory",
     "Picture Span",
     "Processing Speed (PSI)",
@@ -262,12 +279,52 @@ data_executive <-
     "TMT, Part B",
     "Total Deviation Score",
     "Unstructured Task",
-    "Word Generation Perseverations",
+    # "Word Generation Perseverations",
     "Word Generation",
     "Working Memory (WMI)",
     "Working Memory",
-    "Zoo Locations"
-    # add RBANS
+    "Zoo Locations",
+    "RBANS Digit Span",
+    "RBANS Coding",
+    "Attention Index (ATT)",
+    "Orientation",
+    # "Orientation to Self",
+    # "Orientation to Time",
+    # "Orientation to Place",
+    # "Orientation to Situation",
+    "Digits Forward",
+    # "Digits Forward Longest Span",
+    "Digits Backward",
+    # "Digits Backward Longest Span",
+    "Dots",
+    # "Numbers & Letters Part A Speed",
+    # "Numbers & Letters Part A Errors",
+    "Numbers & Letters Part A Efficiency",
+    "Numbers & Letters Part B Efficiency",
+    "Numbers & Letters Part C Efficiency",
+    "Numbers & Letters Part D Efficiency",
+    # "Numbers & Letters Part D Disruption",
+    ## Daily Living
+    "Driving Scenes",
+    "Bill Payment",
+    "Daily Living Memory Immediate Recall",
+    "Daily Living Memory Delayed Recall",
+    "Map Reading",
+    "Judgment"
+    # other
+    # "Writing Legibility",
+    # "Writing Spelling",
+    # "Writing Syntax",
+    # "Writing Conveyance",
+    # "List Learning Semantic Clusters",
+    # "List Learning Perseverations",
+    # "List Learning Intrusions",
+    # "Figure Drawing Copy Organization",
+    # "Figure Drawing Copy Fragmentation",
+    # "Figure Drawing Copy Planning",
+    # "Figure Drawing Immediate Recall Organization",
+    # "Figure Drawing Immediate Recall Fragmentation",
+    # "Figure Drawing Immediate Recall Planning"
   ))
 
 # table arguments
@@ -278,21 +335,24 @@ multiline <- TRUE
 # footnotes
 fn_scaled_score <- gt::md("Scaled score: Mean = 10 [50th‰], SD ± 3 [16th‰, 84th‰]")
 fn_standard_score <- gt::md("Standard score: Mean = 100 [50th‰], SD ± 15 [16th‰, 84th‰]")
-fn_t_score <- gt::md("_T_-score: Mean = 50 [50th‰], SD ± 10 [16th‰, 84th‰]")
-fn_z_score <- gt::md("_z_-score: Mean = 0 [50th‰], SD ± 1 [16th‰, 84th‰]")
+fn_t_score <- gt::md("T-score: Mean = 50 [50th‰], SD ± 10 [16th‰, 84th‰]")
+fn_z_score <- gt::md("z-score: Mean = 0 [50th‰], SD ± 1 [16th‰, 84th‰]")
+
+source_note <- gt::md("_T_ score: Mean = 50 [50th‰], SD ± 10 [16th‰, 84th‰]")
 
 # groupings
 grp_executive <- list(
-  scaled_score = c("WAIS-IV", "D-KEFS", "NEPSY-2", "WISC-5", "WISC-V", "WPPSI-IV", "RBANS"),
-  standard_score = c("NAB", "NAB-S", "WISC-5", "WISC-V", "WAIS-IV", "WPPSI-IV", "WASI-II", "RBANS"),
-  t_score = c("NAB", "NAB-S", "NIH EXAMINER", "Trail Making Test")
+  scaled_score = c("WAIS-IV", "D-KEFS", "NEPSY-2", "WISC-5", "WISC-V", "WPPSI-IV", "RBANS", "RBANS Update Form A"),
+  standard_score = c("NAB", "NAB-S", "WISC-5", "WISC-V", "WAIS-IV", "WPPSI-IV", "WASI-II", "RBANS", "NAB Executive Functions", "NAB Attention Index", "RBANS Update Form A"),
+  t_score = c("NAB-S", "NIH EXAMINER", "Trail Making Test", "Daily Living", "NAB Executive", "NAB Attention", "NAB")
 )
 
 # make `gt` table
 bwu::tbl_gt(
-  data = data_executive,
+  data = data_executive_tbl,
   pheno = pheno,
   table_name = table_name,
+  # source_note = source_note,
   fn_scaled_score = fn_scaled_score,
   fn_standard_score = fn_standard_score,
   fn_t_score = fn_t_score,
@@ -310,10 +370,15 @@ bwu::tbl_gt(
 #| include: false
 #| fig-cap: "Attention and executive functions are essential for successful cognitive functioning, enabling us to perform everyday tasks, handle academic challenges, solve problems, manage our emotions, and interact effectively with others and our environment."
 
+nab <- c("Attention Index (ATT)", "Executive Functions Index (EXE)", "Attention Index", "Executive Index")
+
+data_executive <- data_executive |>
+  dplyr::filter(!scale %in% nab)
+
 # dotplot arguments
 filename <- "fig_executive_subdomain.svg"
 colors <- NULL
-return_plot <- Sys.getenv("RETURN_PLOT")
+return_plot <- TRUE
 
 # dotplot variables to plot (x, y)
 x <- data_executive$z_mean_subdomain
@@ -344,7 +409,7 @@ options(warn = 0) # Reset to default behavior
 # dotplot arguments
 filename <- "fig_executive_narrow.svg"
 colors <- NULL
-return_plot <- Sys.getenv("RETURN_PLOT")
+return_plot <- TRUE
 
 # dotplot variables to plot (x, y)
 x <- data_executive$z_mean_narrow
@@ -366,7 +431,7 @@ options(warn = 0) # Reset to default behavior
 
 ```{=typst}
 #let domain(title: none, file_qtbl, file_fig) = {
-  let font = (font: "Roboto Slab", size: 0.5em)
+  let font = (font: "Roboto Slab", size: 0.7em)
   set text(..font)
   pad(top: 0.5em)[]
     grid(
@@ -379,10 +444,7 @@ options(warn = 0) # Reset to default behavior
           ),
         figure([#image(file_fig, width: auto)],
           caption: figure.caption(position: bottom, [
-            Attention and executive functions are essential for successful
-            cognitive functioning, enabling us to perform everyday tasks, handle
-            academic challenges, solve problems, manage our emotions, and
-            interact effectively with others and our environment.
+            Attention and executive functions are essential for successful cognitive functioning, enabling us to perform everyday tasks, handle academic challenges, solve problems, manage our emotions, and interact effectively with others and our environment.
             ]),
           placement: none,
           kind: "image",
@@ -402,33 +464,7 @@ options(warn = 0) # Reset to default behavior
   file_fig
   )
 ```
-```{=typst}
-#let domain(title: none, file_qtbl, file_fig) = {
-  let font = (font: "Roboto Slab", size: 0.5em)
-  set text(..font)
-    grid(
-      columns: (50%, 50%),
-      gutter: 8pt,
-        figure([#image(file_qtbl)],
-          caption: figure.caption(position: top, [#title]),
-          kind: "qtbl",
-          supplement: [Table],
-          ),
-        figure([#image(file_fig, width: auto)],
-          caption: figure.caption(position: bottom, [
-            Attention and executive functions are essential for successful
-            cognitive functioning, enabling us to perform everyday tasks, handle
-            academic challenges, solve problems, manage our emotions, and
-            interact effectively with others and our environment.
-            ]),
-          placement: none,
-          kind: "image",
-          supplement: [Figure],
-          gap: 0.5em,
-        ),
-      )
-  }
-```
+
 ```{=typst}
 #let title = "Attention/Executive"
 #let file_qtbl = "table_executive.png"
