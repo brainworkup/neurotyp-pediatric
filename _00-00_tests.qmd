@@ -1,8 +1,9 @@
 # TESTS ADMINISTERED {#sec-tests}
 
 - Comprehensive Neurodevelopmental Symptom and History Interview
+- Comprehensive Neurodevelopmental Symptom and History Interview
 - Behavioral Assessment System for Children, 3rd ed, Structured Developmental History (BASC-3 SDH)
-- K-SADS
+- Kiddie-SADS
 - Adaptive Behavior Assessment System, 3rd ed, Parent Form (ABAS-3 Parent)
 - Adaptive Behavior Assessment System, 3rd ed, Parent/Primary Caregiver Form (ABAS-3 Parent)
 - Adaptive Behavior Assessment System, 3rd ed, Self-Report Form (ABAS-3 Self)
@@ -34,7 +35,9 @@
 - Conners' Rating Scale, 4th ed, Parent (Conners-4 Parent)
 - Conners' Rating Scale, 4th ed, Self-Report (Conners-4 Self)
 - Conners' Rating Scale, 4th ed, Teacher (Conners-4 Teacher)
-- Delis-Kaplan Executive Function System (D-KEFS)
+- Delis-Kaplan Executive Function System (D-KEFS):
+  - Color-Word Interference Test
+  - Trail Making Test
 - Grooved Pegboard Test
 - Kaufman Test of Educational Achievement, 3rd ed, Form A (KTEA-3 Form A)
 - Kaufman Test of Educational Achievement, 3rd ed, Form B (KTEA-3 Form B)
@@ -48,9 +51,11 @@
 - Rey-Osterrieth Complex Figure Test (ROCFT)
 - Test of Memory Malingering (TOMM)
 - Trail Making Test (TMT)
+- Wechsler Adult Intelligence Scale, 5th ed (WAIS-5)
+- Wechsler Adult Intelligence Scale, 4th ed (WAIS-IV)
 - Wechsler Abbreviated Scale of Intelligence, 2nd ed (WASI-2)
 - Wechsler Individual Achievement Test, 4th ed (WIAT-4)
-- Wechsler Individual Achievement Test, 4th ed (WIAT-4): Word Reading, Reading Comprehension, Pseudoword Decoding, Orthographic Fluency, Decoding Fluency 
+- Wechsler Individual Achievement Test, 4th ed (WIAT-4): Word Reading, Reading Comprehension, Pseudoword Decoding, Orthographic Fluency, Decoding Fluency
 - Wechsler Intelligence Scale for Children, 5th ed (WISC-V)
 - Wechsler Preschool and Primary Scale of Intelligence, 4th ed, Ages 2-3 (WPPSI-IV)
 - Wechsler Preschool and Primary Scale of Intelligence, 4th ed, Ages 4-7 (WPPSI-IV)
@@ -62,3 +67,4 @@
   - Behavioral Rating Scale
   - Word Fluency
   - Unstructured Task
+- Personality Assessment Inventory, Adolescent (PAI-A)

@@ -37,3 +37,14 @@ Thumbs.db
 .vscode/
 .prompts/
 *.
+
+# google drive
+Icon
+/Icon/
+.github/Icon
+*Icon*
+Icon?
+.tmp.driveupload/
+template_files/Icon
+template_files/Icon?
+template_files/Icon

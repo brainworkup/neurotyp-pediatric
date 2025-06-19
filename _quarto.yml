@@ -1,20 +1,27 @@
 project:
   type: default
-  execute-dir: file
+  title: "Pediatric Report"
+  execute-dir: project
   render:
-    - Biggie.qmd
+    - "!quarto/"
+    - template.qmd
 
 format:
   neurotyp-pediatric-typst:
     keep-typ: true
     keep-md: true
     papersize: "us-letter"
-    bodyfont: "ScholaX"
-    sansfont: "Work Sans"
-    fontsize: 12pt
+    bodyfont: "IBM Plex Serif"
+    sansfont: "IBM Plex Sans"
+    fontsize: 11pt
     number-sections: false
-    citeproc: false
-    csl: src/bib/apa.csl
+    number-offset: 1
+    citeproc: true
+    csl: inst/resources/bib/apa.csl
+    shift-heading-level-by: 0
+    fig-width: 6
+    fig-height: 4
+    fig-format: svg
 
 execute:
   warning: false
@@ -22,6 +29,9 @@ execute:
   message: false
   freeze: auto
   cache: true
+  engine: knitr
+  tools:
+    r: "/usr/local/bin/R"
 
 editor:
   markdown:
@@ -35,4 +45,4 @@ fig-format: svg
 fig-dpi: 270
 df-print: kable
 reference-location: document
-bibliography: src/bib/refs.bib
+bibliography: inst/resources/bib/refs.bib
