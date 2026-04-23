@@ -1,0 +1,50 @@
+# Build artifacts and generated files
+*.o
+*.class
+*.exe
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+
+# Local configuration files
+.idea/
+.project
+
+# Sensitive data
+*.key
+*.password
+
+# Large media files
+*.png
+*.jpg
+*.mp4
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Backup and temporary editor files
+*.bak
+*.swp
+*~
+
+# main
+# _extensions/
+.history/
+.vscode/
+.prompts/
+*.
+
+# google drive
+Icon
+/Icon/
+.github/Icon
+*Icon*
+Icon?
+.tmp.driveupload/
+template_files/Icon
+template_files/Icon?
+template_files/Icon
