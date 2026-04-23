@@ -1,14 +1,14 @@
-# Neurotyp Adult — Neuropsychological Report Template
+# Neurotyp Pediatric — Neuropsychological Report Template
 
-A [Quarto](https://quarto.org/) extension that renders professional adult neuropsychological evaluation reports using [Typst](https://typst.app/). Part of the broader **Neurotyp** ecosystem maintained by [brainworkup](https://brainworkup.org/).
+A [Quarto](https://quarto.org/) extension that renders professional pediatric neuropsychological evaluation reports using [Typst](https://typst.app/). Part of the broader **Neurotyp** ecosystem maintained by [brainworkup](https://brainworkup.org/).
 
-**Version:** 0.2.0 | **Requires:** Quarto ≥ 1.4.0 | **License:** MIT
+**Version:** 0.2.0 | **Requires:** Quarto ≥ 1.10.0 | **License:** MIT
 
 ---
 
 ## Overview
 
-`neurotyp-adult` provides a modular Quarto template for generating polished, clinic-ready neuropsychological reports for adult patients. Reports are typeset via Typst and can include:
+`neurotyp-pediatric` provides a modular Quarto template for generating polished, clinic-ready neuropsychological reports for pediatric patients. Reports are typeset via Typst and can include:
 
 - Patient demographics and case metadata
 - Tests administered
@@ -31,7 +31,7 @@ The template integrates with the [`cingulate`](https://github.com/brainworkup/ci
 Use the template to scaffold a new report directory:
 
 ```bash
-quarto use template brainworkup/neurotyp-adult
+quarto use template brainworkup/neurotyp-pediatric
 ```
 
 This installs the extension and copies `template.qmd` as a starting point.
@@ -41,7 +41,7 @@ This installs the extension and copies `template.qmd` as a starting point.
 Add the extension (format only, without the template file) to an existing project:
 
 ```bash
-quarto add brainworkup/neurotyp-adult
+quarto add brainworkup/neurotyp-pediatric
 ```
 
 ### Update
@@ -49,7 +49,7 @@ quarto add brainworkup/neurotyp-adult
 Pull the latest version of the extension:
 
 ```bash
-quarto update extension brainworkup/neurotyp-adult
+quarto update extension brainworkup/neurotyp-pediatric
 ```
 
 ---
@@ -100,9 +100,9 @@ quarto update extension brainworkup/neurotyp-adult
 ## Template Structure
 
 ```
-neurotyp-adult/
+neurotyp-pediatric/
 ├── _extensions/
-│   └── neurotyp-adult/
+│   └── neurotyp-pediatric/
 │       ├── _extension.yml       # Extension metadata (v0.2.0)
 │       ├── typst-template.typ   # Typst page layout & header rules
 │       └── typst-show.typ       # Typst show rules & typography
